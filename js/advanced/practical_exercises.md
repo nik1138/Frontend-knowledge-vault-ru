@@ -1,0 +1,17 @@
+# Практические упражнения по продвинутому JavaScript
+
+## Введение
+
+Этот раздел был разделен на несколько подразделов для более удобного изучения. Пожалуйста, ознакомьтесь с соответствующими подразделами:
+
+- [[js/advanced/practical_exercises/overview|Обзор практических упражнений]] - Введение и навигация по упражнениям
+- [[js/advanced/practical_exercises/prototypes|Прототипы и наследование]] - Упражнения по работе с прототипами
+- [[js/advanced/practical_exercises/modules|Модули]] - Упражнения по созданию модульной системы
+- [[js/advanced/practical_exercises/async|Асинхронное программирование]] - Упражнения по работе с асинхронным кодом
+- [[js/advanced/practical_exercises/generators|Генераторы и итераторы]] - Упражнения по работе с итерируемыми объектами
+- [[js/advanced/practical_exercises/proxy|Proxy и Reflect]] - Упражнения по метапрограммированию
+- [[js/advanced/practical_exercises/framework|Комплексное упражнение]] - Создание мини-фреймворка
+
+Практические упражнения - важная часть изучения продвинутых концепций JavaScript. Они помогают закрепить теоретические знания и развить навыки программирования.
+
+#javascript #advanced #practice #exercises #programming

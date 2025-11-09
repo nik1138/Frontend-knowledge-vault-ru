@@ -1,0 +1,714 @@
+# HTML SEO: Структура страницы
+
+Структура HTML страницы играет ключевую роль в SEO оптимизации. Правильная организация контента помогает поисковым системам лучше понимать и индексировать веб-страницы, а также улучшает пользовательский опыт и доступность.
+
+## Основная структура HTML документа
+
+### Семантическая разметка
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML SEO: Структура страницы - Руководство по оптимизации</title>
+    <meta name="description" content="Полное руководство по SEO оптимизации структуры HTML страниц. Узнайте, как правильно использовать семантические элементы для улучшения ранжирования в поисковых системах.">
+    
+    <!-- Структурированные данные -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "HTML SEO: Структура страницы",
+        "author": {
+            "@type": "Person",
+            "name": "Иван Иванов"
+        },
+        "datePublished": "2023-03-15",
+        "dateModified": "2023-03-15",
+        "description": "Полное руководство по SEO оптимизации структуры HTML страниц"
+    }
+    </script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Веб-разработка Гид</h1>
+        <nav aria-label="Основная навигация">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/html">HTML</a></li>
+                <li><a href="/css">CSS</a></li>
+                <li><a href="/javascript">JavaScript</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main>
+        <article>
+            <header>
+                <h1>HTML SEO: Структура страницы</h1>
+                <p>Опубликовано: <time datetime="2023-03-15">15 марта 2023</time></p>
+                <p>Автор: Иван Иванов</p>
+            </header>
+            
+            <section>
+                <h2>Введение в SEO структуру</h2>
+                <p>Структура HTML страницы является фундаментом для SEO оптимизации...</p>
+            </section>
+            
+            <section>
+                <h2>Семантические элементы</h2>
+                <p>Использование семантических элементов помогает поисковым системам...</p>
+                
+                <section>
+                    <h3>Элементы заголовков</h3>
+                    <p>Правильная иерархия заголовков улучшает восприятие контента...</p>
+                </section>
+                
+                <section>
+                    <h3>Разделы контента</h3>
+                    <p>Элементы section и article помогают структурировать содержимое...</p>
+                </section>
+            </section>
+        </article>
+    </main>
+
+    <!-- Боковая панель -->
+    <aside aria-label="Дополнительная информация">
+        <h2>Похожие статьи</h2>
+        <ul>
+            <li><a href="/html-seo-metatags">Метатеги и заголовки</a></li>
+            <li><a href="/html-semantics">Семантическая разметка</a></li>
+        </ul>
+    </aside>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <p>&copy; 2023 Веб-разработка Гид. Все права защищены.</p>
+        <nav aria-label="Нижняя навигация">
+            <ul>
+                <li><a href="/privacy">Политика конфиденциальности</a></li>
+                <li><a href="/terms">Условия использования</a></li>
+                <li><a href="/sitemap">Карта сайта</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
+```
+
+## Иерархия заголовков
+
+### Правильная структура заголовков
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Иерархия заголовков для SEO</title>
+    <meta name="description" content="Как правильно использовать заголовки HTML для SEO оптимизации">
+</head>
+<body>
+    <header>
+        <h1>Название сайта</h1>
+    </header>
+
+    <main>
+        <!-- Основной заголовок страницы -->
+        <h1>HTML SEO: Иерархия заголовков</h1>
+        
+        <section>
+            <h2>Введение в заголовки</h2>
+            <p>Заголовки помогают поисковым системам понимать структуру содержимого...</p>
+            
+            <section>
+                <h3>Типы заголовков</h3>
+                <p>Существует несколько уровней заголовков от h1 до h6...</p>
+                
+                <section>
+                    <h4>Заголовки четвертого уровня</h4>
+                    <p>Используются для более детальной структуризации...</p>
+                    
+                    <section>
+                        <h5>Заголовки пятого уровня</h5>
+                        <p>Для очень специфичных подразделов...</p>
+                        
+                        <section>
+                            <h6>Заголовки шестого уровня</h6>
+                            <p>Максимально детализированные подразделы...</p>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        
+        <section>
+            <h2>Лучшие практики</h2>
+            <p>Вот несколько рекомендаций по использованию заголовков...</p>
+            
+            <h3>Использование ключевых слов</h3>
+            <p>Ключевые слова в заголовках помогают улучшить ранжирование...</p>
+            
+            <h3>Длина заголовков</h3>
+            <p>Заголовки должны быть информативными, но не слишком длинными...</p>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Распространенные ошибки
+
+```html
+<!-- НЕПРАВИЛЬНО - пропущен h2 -->
+<h1>Основной заголовок</h1>
+<h3>Подраздел</h3>  <!-- Пропущен h2 -->
+
+<!-- НЕПРАВИЛЬНО - несколько h1 на странице -->
+<h1>Заголовок 1</h1>
+<h1>Заголовок 2</h1>  <!-- Второй h1 на странице -->
+
+<!-- НЕПРАВИЛЬНО - нелогичная иерархия -->
+<h1>Основной заголовок</h1>
+<h4>Подраздел 1</h4>  <!-- Пропущены h2 и h3 -->
+<h2>Подраздел 2</h2>  <!-- Нарушена иерархия -->
+```
+
+## Семантические элементы для SEO
+
+### Основные семантические элементы
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Семантические элементы для SEO</title>
+    <meta name="description" content="Как использовать семантические HTML элементы для SEO оптимизации">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Название сайта</h1>
+        <nav aria-label="Основная навигация">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main>
+        <article>
+            <header>
+                <h1>Заголовок статьи</h1>
+                <p>Опубликовано: <time datetime="2023-03-15">15 марта 2023</time></p>
+            </header>
+            
+            <section>
+                <h2>Введение</h2>
+                <p>Семантические элементы помогают поисковым системам...</p>
+            </section>
+            
+            <section>
+                <h2>Основная часть</h2>
+                <p>Основное содержимое статьи...</p>
+                
+                <!-- Дополнительная информация -->
+                <aside>
+                    <h3>Интересный факт</h3>
+                    <p>Дополнительная информация, связанная с темой...</p>
+                </aside>
+            </section>
+            
+            <footer>
+                <p>Автор: <a href="/author">Иван Иванов</a></p>
+                <p>Метки: <span>HTML</span>, <span>SEO</span>, <span>структура</span></p>
+            </footer>
+        </article>
+    </main>
+
+    <!-- Боковая панель -->
+    <aside aria-label="Боковая панель">
+        <h2>Популярные статьи</h2>
+        <ul>
+            <li><a href="/popular-1">Популярная статья 1</a></li>
+            <li><a href="/popular-2">Популярная статья 2</a></li>
+        </ul>
+    </aside>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <p>&copy; 2023 Все права защищены</p>
+        <nav aria-label="Нижняя навигация">
+            <ul>
+                <li><a href="/privacy">Политика конфиденциальности</a></li>
+                <li><a href="/sitemap">Карта сайта</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
+```
+
+## Структура для разных типов контента
+
+### Блоговая статья
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Как улучшить SEO с помощью HTML структуры</title>
+    <meta name="description" content="Практические советы по улучшению SEO с помощью правильной HTML структуры">
+    
+    <!-- Структурированные данные для статьи -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Как улучшить SEO с помощью HTML структуры",
+        "author": {
+            "@type": "Person",
+            "name": "Иван Иванов"
+        },
+        "datePublished": "2023-03-15T10:00:00+03:00",
+        "dateModified": "2023-03-15T10:00:00+03:00",
+        "description": "Практические советы по улучшению SEO с помощью правильной HTML структуры",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://example.com/blog/html-seo-structure"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Блог веб-разработки</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/blog">Блог</a></li>
+                <li><a href="/about">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header>
+                <h1>Как улучшить SEO с помощью HTML структуры</h1>
+                <p>Автор: <a href="/author/ivan-ivanov">Иван Иванов</a></p>
+                <p>Опубликовано: <time datetime="2023-03-15">15 марта 2023</time></p>
+                <p>Время чтения: 5 минут</p>
+            </header>
+            
+            <section>
+                <h2>Введение</h2>
+                <p>HTML структура играет важную роль в SEO оптимизации...</p>
+            </section>
+            
+            <section>
+                <h2>Основные принципы</h2>
+                <p>При создании HTML структуры для SEO важно учитывать...</p>
+                
+                <section>
+                    <h3>Использование заголовков</h3>
+                    <p>Правильная иерархия заголовков помогает поисковым системам...</p>
+                </section>
+                
+                <section>
+                    <h3>Семантические элементы</h3>
+                    <p>Семантические элементы улучшают понимание содержимого...</p>
+                </section>
+            </section>
+            
+            <section>
+                <h2>Практические рекомендации</h2>
+                <p>Вот несколько практических советов по улучшению HTML структуры...</p>
+                
+                <ol>
+                    <li>Используйте только один h1 на странице</li>
+                    <li>Следите за логической иерархией заголовков</li>
+                    <li>Используйте семантические элементы</li>
+                </ol>
+            </section>
+            
+            <footer>
+                <p>Категория: <a href="/category/seo">SEO</a></p>
+                <p>Метки: <a href="/tag/html">HTML</a>, <a href="/tag/structure">Структура</a></p>
+            </footer>
+        </article>
+        
+        <!-- Комментарии -->
+        <section>
+            <h2>Комментарии</h2>
+            <article>
+                <header>
+                    <h3>Комментарий от Александра</h3>
+                    <time datetime="2023-03-16T09:30">16 марта 2023, 09:30</time>
+                </header>
+                <p>Отличная статья! Особенно помогла информация о заголовках.</p>
+            </article>
+        </section>
+    </main>
+
+    <aside>
+        <h2>Похожие статьи</h2>
+        <ul>
+            <li><a href="/blog/semantic-html">Семантический HTML</a></li>
+            <li><a href="/blog/meta-tags-seo">Метатеги для SEO</a></li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>&copy; 2023 Блог веб-разработки. Все права защищены.</p>
+    </footer>
+</body>
+</html>
+```
+
+### Коммерческая страница продукта
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Смартфон XYZ Pro - Купить по выгодной цене</title>
+    <meta name="description" content="Смартфон XYZ Pro с отличными характеристиками и гарантией. Быстрая доставка, гарантия качества.">
+    
+    <!-- Структурированные данные для продукта -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Смартфон XYZ Pro",
+        "image": "https://example.com/xyz-pro.jpg",
+        "description": "Высокопроизводительный смартфон с отличной камерой",
+        "sku": "XYZ-PRO-128GB-BLACK",
+        "offers": {
+            "@type": "Offer",
+            "price": "49990",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "Интернет-магазин"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "128"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Интернет-магазин</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/catalog">Каталог</a></li>
+                <li><a href="/cart">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article itemscope itemtype="https://schema.org/Product">
+            <header>
+                <h1 itemprop="name">Смартфон XYZ Pro</h1>
+                <p>Профессиональный смартфон для работы и развлечений</p>
+            </header>
+            
+            <section>
+                <h2>Описание продукта</h2>
+                <div itemprop="description">
+                    <p>Смартфон XYZ Pro оснащен передовым процессором и отличной камерой...</p>
+                </div>
+                
+                <figure>
+                    <img src="xyz-pro.jpg" alt="Смартфон XYZ Pro" itemprop="image">
+                    <figcaption>Смартфон XYZ Pro с отличной камерой</figcaption>
+                </figure>
+            </section>
+            
+            <section>
+                <h2>Характеристики</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Значение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Экран</td>
+                            <td>6.7 дюймов, OLED</td>
+                        </tr>
+                        <tr>
+                            <td>Процессор</td>
+                            <td>Octa-core 2.8 GHz</td>
+                        </tr>
+                        <tr>
+                            <td>Память</td>
+                            <td>128 ГБ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section>
+                <h2>Цена и покупка</h2>
+                <div class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <span class="current-price" itemprop="price">49 990 ₽</span>
+                    <span class="original-price">59 990 ₽</span>
+                    <meta itemprop="priceCurrency" content="RUB">
+                </div>
+                
+                <button type="button" onclick="addToCart()">Добавить в корзину</button>
+            </section>
+            
+            <section>
+                <h2>Отзывы</h2>
+                <article itemprop="review" itemscope itemtype="https://schema.org/Review">
+                    <h3 itemprop="name">Отличный смартфон!</h3>
+                    <p>Рейтинг: <span itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                        <span itemprop="ratingValue">5</span> из 5
+                    </span></p>
+                    <p itemprop="reviewBody">Отличный смартфон, всем рекомендую!</p>
+                    <p>Автор: <span itemprop="author">Иван Петров</span></p>
+                </article>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+    </footer>
+</body>
+</html>
+```
+
+## Таблицы и списки для SEO
+
+### Структурированные таблицы
+
+```html
+<!-- SEO-оптимизированная таблица -->
+<table>
+    <caption>Сравнение характеристик смартфонов</caption>
+    <thead>
+        <tr>
+            <th scope="col">Модель</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Экран</th>
+            <th scope="col">Камера</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Смартфон A</th>
+            <td>29 990 ₽</td>
+            <td>6.1 дюймов</td>
+            <td>48 МП</td>
+        </tr>
+        <tr>
+            <th scope="row">Смартфон B</th>
+            <td>39 990 ₽</td>
+            <td>6.5 дюймов</td>
+            <td>64 МП</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+### Организованные списки
+
+```html
+<!-- Нумерованный список для пошагового руководства -->
+<ol>
+    <li>Установите правильную HTML структуру</li>
+    <li>Добавьте семантические элементы</li>
+    <li>Оптимизируйте заголовки</li>
+    <li>Добавьте структурированные данные</li>
+</ol>
+
+<!-- Маркированный список для преимуществ -->
+<ul>
+    <li>Улучшенное ранжирование в поисковых системах</li>
+    <li>Лучший пользовательский опыт</li>
+    <li>Повышенная доступность</li>
+</ul>
+```
+
+## Адаптивная структура
+
+### Мобильная оптимизация
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная HTML структура</title>
+    <meta name="description" content="Как создать адаптивную HTML структуру для SEO">
+    
+    <!-- Адаптивные метатеги -->
+    <link rel="canonical" href="https://example.com/responsive-structure">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.example.com/responsive-structure">
+</head>
+<body>
+    <!-- Адаптивная навигация -->
+    <header>
+        <h1>Название сайта</h1>
+        <button id="menu-toggle" aria-label="Меню">☰</button>
+        <nav id="main-nav" aria-label="Основная навигация">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header>
+                <h1>Адаптивная HTML структура</h1>
+                <p>Оптимизация для мобильных устройств важна для SEO</p>
+            </header>
+            
+            <section>
+                <h2>Преимущества адаптивности</h2>
+                <p>Адаптивная структура улучшает пользовательский опыт на всех устройствах...</p>
+            </section>
+        </article>
+    </main>
+    
+    <script>
+        // Мобильное меню
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('mobile-open');
+        });
+    </script>
+</body>
+</html>
+```
+
+## Проверка структуры страницы
+
+### Инструменты для анализа
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Проверка HTML структуры</title>
+    <meta name="description" content="Как проверить правильность HTML структуры для SEO">
+</head>
+<body>
+    <h1>Проверка HTML структуры</h1>
+    
+    <!-- Структура для тестирования -->
+    <main>
+        <h2>Инструменты проверки</h2>
+        
+        <section>
+            <h3>W3C Validator</h3>
+            <p>Официальный инструмент для проверки валидности HTML</p>
+        </section>
+        
+        <section>
+            <h3>Google Search Console</h3>
+            <p>Для проверки индексации и структурированных данных</p>
+        </section>
+        
+        <section>
+            <h3>Lighthouse</h3>
+            <p>Встроенный инструмент в Chrome DevTools</p>
+        </section>
+    </main>
+    
+    <script>
+        // Проверка основных SEO элементов
+        function checkPageStructure() {
+            const issues = [];
+            
+            // Проверка заголовка
+            const title = document.querySelector('title');
+            if (!title || title.textContent.trim().length === 0) {
+                issues.push('Отсутствует или пустой заголовок страницы');
+            }
+            
+            // Проверка описания
+            const description = document.querySelector('meta[name="description"]');
+            if (!description || !description.getAttribute('content')) {
+                issues.push('Отсутствует мета-описание');
+            }
+            
+            // Проверка заголовков
+            const h1Elements = document.querySelectorAll('h1');
+            if (h1Elements.length === 0) {
+                issues.push('Отсутствует заголовок h1');
+            } else if (h1Elements.length > 1) {
+                issues.push(`Найдено ${h1Elements.length} заголовков h1, рекомендуется один`);
+            }
+            
+            // Проверка изображений
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                if (!img.hasAttribute('alt')) {
+                    issues.push(`Изображение ${index + 1} не имеет alt атрибута`);
+                }
+            });
+            
+            return issues;
+        }
+        
+        // Выполнить проверку при загрузке
+        window.addEventListener('DOMContentLoaded', () => {
+            const issues = checkPageStructure();
+            if (issues.length > 0) {
+                console.log('Найдены проблемы структуры:', issues);
+            } else {
+                console.log('Структура страницы в порядке!');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+## Заключение
+
+Правильная HTML структура является фундаментом для SEO оптимизации. Ключевые моменты:
+
+1. **Семантические элементы** - помогают поисковым системам понимать содержимое
+2. **Иерархия заголовков** - должна быть логичной и последовательной
+3. **Структурированные данные** - улучшают отображение в поисковой выдаче
+4. **Адаптивность** - важна для мобильного SEO
+5. **Доступность** - улучшает пользовательский опыт и SEO
+
+## Следующие темы
+- [[HTML/SEO/Метатеги и заголовки]]
+- [[HTML/SEO/Структурированные данные]]
+- [[HTML/Семантика]]
+
+## Теги
+#html #seo #structure #web-development #semantics #headings #frontend #optimization

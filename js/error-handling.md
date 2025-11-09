@@ -1,0 +1,321 @@
+---
+aliases: ["Обработка ошибок в JavaScript", "JavaScript ошибки"]
+tags: 
+  - #javascript
+  - #error-handling
+  - #programming
+  - #best-practices
+---
+
+# Обработка ошибок в JavaScript
+
+## Введение
+
+Обработка ошибок в JavaScript — это критически важный аспект разработки, позволяющий создавать надежные и устойчивые приложения. Понимание различных типов ошибок и методов их обработки позволяет предотвращать сбои и обеспечивать хорошее пользовательское взаимодействие.
+
+## Типы ошибок в JavaScript
+
+JavaScript поддерживает несколько типов ошибок:
+
+- **Синтаксические ошибки** (`SyntaxError`) — возникают при неправильном синтаксисе кода
+- **Ошибки ссылок** (`ReferenceError`) — когда обращаются к несуществующей переменной
+- **Типовые ошибки** (`TypeError`) — когда операция применяется к неподходящему типу
+- **Диапазонные ошибки** (`RangeError`) — когда число выходит за допустимые пределы
+- **Ошибки вычислений** (`EvalError`, `URIError`) — специфические ошибки выполнения
+
+```javascript
+// Примеры различных ошибок
+try {
+  eval("alert('Привет"); // SyntaxError
+  console.log(undeclaredVariable); // ReferenceError
+  null.someMethod(); // TypeError
+  new Array(-1); // RangeError
+} catch (error) {
+  console.error(error.name, error.message);
+}
+```
+
+## Блоки try/catch/finally
+
+Блоки `try/catch/finally` позволяют перехватывать и обрабатывать ошибки:
+
+```javascript
+try {
+  // Код, который может вызвать ошибку
+  let result = riskyOperation();
+  console.log(result);
+} catch (error) {
+  // Обработка ошибки
+  console.error("Произошла ошибка:", error.message);
+} finally {
+  // Этот блок выполняется всегда
+  console.log("Очистка ресурсов");
+}
+```
+
+## Объекты ошибок и свойства
+
+Объект `Error` содержит важную информацию об ошибке:
+
+- `name` — имя типа ошибки
+- `message` — описание ошибки
+- `stack` — трассировка стека (не стандартное, но поддерживается везде)
+
+```javascript
+function customErrorFunction() {
+  const error = new Error("Произошла пользовательская ошибка");
+  error.name = "CustomError";
+  error.code = 404;
+  return error;
+}
+
+try {
+  throw customErrorFunction();
+} catch (error) {
+  console.log(error.name); // "CustomError"
+  console.log(error.message); // "Произошла пользовательская ошибка"
+  console.log(error.code); // 404
+  console.log(error.stack); // Трассировка стека
+}
+```
+
+## Пользовательские ошибки
+
+Создание пользовательских классов ошибок позволяет лучше структурировать обработку ошибок:
+
+```javascript
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+    this.code = 422;
+  }
+}
+
+class NetworkError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.name = "NetworkError";
+    this.statusCode = statusCode;
+  }
+}
+
+try {
+  throw new ValidationError("Некорректные данные формы");
+} catch (error) {
+  if (error instanceof ValidationError) {
+    console.log("Ошибка валидации:", error.message);
+  }
+}
+```
+
+## Распространение ошибок
+
+Ошибки распространяются по стеку вызовов до тех пор, пока не будут перехвачены:
+
+```javascript
+function level3() {
+  throw new Error("Ошибка в level3");
+}
+
+function level2() {
+  level3();
+}
+
+function level1() {
+  level2();
+}
+
+try {
+  level1();
+} catch (error) {
+  console.log("Ошибка перехвачена в level1:", error.message);
+}
+```
+
+## Асинхронная обработка ошибок
+
+Для асинхронных операций используются специальные методы обработки ошибок:
+
+```javascript
+// Обработка ошибок в промисах
+async function asyncFunction() {
+  try {
+    const result = await fetch("https://api.example.com/data");
+    if (!result.ok) {
+      throw new Error(`HTTP ошибка! статус: ${result.status}`);
+    }
+    const data = await result.json();
+    return data;
+  } catch (error) {
+    console.error("Ошибка при получении данных:", error);
+    throw error; // Перебрасываем ошибку для обработки выше
+  }
+}
+
+// Использование .catch() для обработки ошибок в цепочке промисов
+fetch("https://api.example.com/data")
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Ошибка:", error));
+```
+
+## Обработка ошибок в промисах
+
+Промисы имеют встроенные механизмы обработки ошибок:
+
+```javascript
+// Обработка ошибок с использованием Promise.all
+Promise.all([
+  fetch("https://api.example.com/1"),
+  fetch("https://api.example.com/2"),
+  fetch("https://api.example.com/3")
+])
+.then(responses => Promise.all(responses.map(r => r.json())))
+.catch(error => console.error("Ошибка в одной из операций:", error));
+
+// Обработка ошибок с Promise.allSettled
+Promise.allSettled([
+  fetch("https://api.example.com/1"),
+  fetch("https://api.example.com/2"),
+  fetch("https://api.example.com/3")
+])
+.then(results => {
+  results.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.error(`Запрос ${index} завершился с ошибкой:`, result.reason);
+    }
+  });
+});
+```
+
+## Границы ошибок
+
+В контексте фреймворков, таких как [[React]], используются границы ошибок для изоляции ошибок компонентов:
+
+```javascript
+// Пример границы ошибки в React (используя концепции из [[react/error-boundaries]])
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Ошибка компонента:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Что-то пошло не так.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+## Логирование и мониторинг
+
+Эффективная стратегия логирования ошибок включает:
+
+- Централизованное логирование ошибок
+- Отправку ошибок в системы мониторинга
+- Учет контекста ошибки
+
+```javascript
+function logError(error, context = {}) {
+  const errorReport = {
+    message: error.message,
+    stack: error.stack,
+    context,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    url: window.location.href
+  };
+
+  // Отправка в систему мониторинга
+  console.error("Ошибка:", errorReport);
+  
+  // Пример отправки в удаленную систему
+  // sendErrorReport(errorReport);
+}
+```
+
+## Отладка ошибок
+
+Для отладки ошибок полезно использовать:
+
+- Инструменты разработчика в браузере
+- Точки останова
+- Консольные логи
+- Трассировку стека
+
+```javascript
+function debugFunction() {
+  try {
+    // Код с потенциальной ошибкой
+    const data = JSON.parse(invalidJsonString);
+    return data;
+  } catch (error) {
+    // Отладочная информация
+    console.group("Отладка ошибки");
+    console.log("Ошибка:", error.message);
+    console.log("Тип ошибки:", error.name);
+    console.log("Стек вызовов:", error.stack);
+    console.groupEnd();
+    
+    throw error; // Перебрасываем ошибку
+  }
+}
+```
+
+## Стратегии обработки ошибок
+
+Эффективные стратегии обработки ошибок включают:
+
+- **Предотвращение ошибок** — проверка данных перед выполнением операций
+- **Обработка ошибок** — корректная реакция на ошибки
+- **Восстановление после ошибок** — попытки восстановления после сбоев
+- **Отчет об ошибках** — уведомление разработчиков о проблемах
+
+```javascript
+// Стратегия "пессимистичной проверки"
+function safeOperation(input) {
+  // Проверка входных данных
+  if (typeof input !== 'object' || input === null) {
+    throw new ValidationError("Входные данные должны быть объектом");
+  }
+  
+  // Выполнение операции с обработкой возможных ошибок
+  try {
+    return performOperation(input);
+  } catch (error) {
+    if (error instanceof NetworkError) {
+      // Попытка повтора операции
+      return retryOperation(input);
+    } else {
+      throw error; // Перебрасываем другие типы ошибок
+    }
+  }
+}
+```
+
+## Связи с другими файлами
+
+- [[js/promises]] — подробное описание работы с промисами
+- [[js/async-await]] — асинхронные функции и их обработка
+- [[js/debugging]] — методы отладки JavaScript кода
+- [[react/error-boundaries]] — границы ошибок в React
+- [[js/functions]] — основы работы с функциями
+- [[js/objects]] — работа с объектами и их методами
+
+## Заключение
+
+Правильная обработка ошибок в JavaScript критически важна для создания надежных приложений. Использование подходящих стратегий обработки ошибок, создание пользовательских классов ошибок и эффективное логирование позволяют создавать более устойчивые и легко отлаживаемые приложения.
+
+Помните, что хорошая обработка ошибок включает не только технические аспекты, но и пользовательский опыт — сообщения об ошибках должны быть понятными и полезными для пользователей.

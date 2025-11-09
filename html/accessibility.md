@@ -1,0 +1,2862 @@
+# HTML Доступность
+
+Доступность веб-контента (web accessibility) - это практика создания веб-сайтов и приложений, которые могут использоваться всеми людьми, включая тех, кто имеет ограничения по здоровью. HTML предоставляет множество инструментов для обеспечения доступности.
+
+## Что такое доступность веб-контента?
+
+Доступность веб-контента означает, что веб-сайты, инструменты и технологии разработаны так, чтобы люди с ограниченными возможностями могли использовать их. Это включает в себя людей с:
+- Визуальными ограничениями (слепота, слабовидение)
+- Слуховыми ограничениями (глухота, слабослышание)
+- Ограничениями опорно-двигательного аппарата
+- Когнитивными ограничениями
+- Неврологическими расстройствами
+
+## Основные принципы доступности (WCAG)
+
+### POUR - основные принципы:
+1. **Perceivable (Воспринимаемость)** - информация должна быть представлена способами, которые пользователи могут воспринять
+2. **Operable (Управляемость)** - интерфейс должен быть удобен в использовании
+3. **Understandable (Понятность)** - информация и работа интерфейса должны быть понятны
+4. **Robust (Надежность)** - контент должен быть надежным, чтобы различные вспомогательные технологии могли его использовать
+
+## Структура документа и доступность
+
+### Правильная иерархия заголовков
+
+```html
+<!-- Правильная иерархия заголовков -->
+<main>
+    <h1>Основной заголовок страницы</h1>
+
+    <section>
+        <h2>Первый раздел</h2>
+        <p>Содержимое первого раздела...</p>
+
+        <section>
+            <h3>Подраздел</h3>
+            <p>Содержимое подраздела...</p>
+        </section>
+    </section>
+
+    <section>
+        <h2>Второй раздел</h2>
+        <p>Содержимое второго раздела...</p>
+    </section>
+</main>
+```
+
+### Семантические элементы
+
+```html
+<!-- Использование семантических элементов -->
+<header>
+    <h1>Название сайта</h1>
+    <nav aria-label="Основная навигация">
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/about">О нас</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <article>
+        <h2>Заголовок статьи</h2>
+        <p>Содержимое статьи...</p>
+    </article>
+</main>
+
+<aside aria-label="Боковая панель">
+    <h3>Реклама</h3>
+    <p>Рекламный контент</p>
+</aside>
+
+<footer>
+    <p>&copy; 2023 Все права защищены</p>
+</footer>
+```
+
+## Альтернативный текст
+
+### Изображения
+
+```html
+<!-- Хороший альтернативный текст -->
+<img src="chart.png" alt="График роста продаж за последний квартал, показывающий увеличение на 25%">
+
+<!-- Декоративное изображение -->
+<img src="decoration.png" alt="">
+
+<!-- Иконка с поясняющим текстом -->
+<div>
+    <img src="warning-icon.png" alt="Предупреждение: "> <span>Важное уведомление для пользователя</span>
+</div>
+```
+
+### Медиа-элементы
+
+```html
+<!-- Видео с субтитрами -->
+<video controls width="640" height="360">
+    <source src="video.mp4" type="video/mp4">
+    <track kind="subtitles" src="subtitles.vtt" srclang="ru" label="Русские">
+    <track kind="subtitles" src="subtitles-en.vtt" srclang="en" label="English">
+    Ваш браузер не поддерживает видео элемент.
+</video>
+
+<!-- Аудио с транскрипцией -->
+<audio controls>
+    <source src="podcast.mp3" type="audio/mpeg">
+    <p>Транскрипция подкаста доступна ниже.</p>
+</audio>
+```
+
+## ARIA (Accessible Rich Internet Applications)
+
+ARIA - это набор атрибутов, которые позволяют разработчикам улучшить доступность веб-контента.
+
+### Основные ARIA атрибуты
+
+```html
+<!-- Роль элемента -->
+<div role="button" tabindex="0" onclick="doSomething()">Кнопка-имитация</div>
+
+<!-- Описание элемента -->
+<button aria-label="Закрыть">✕</button>
+
+<button aria-describedby="help-text">Помощь</button>
+<div id="help-text">Нажмите для получения справки</div>
+
+<!-- Состояния -->
+<input type="checkbox" id="terms" aria-checked="false">
+<label for="terms">Согласен с условиями</label>
+
+<!-- Структура списка -->
+<ul role="list">
+    <li role="listitem">Элемент 1</li>
+    <li role="listitem">Элемент 2</li>
+</ul>
+```
+
+### ARIA для сложных компонентов
+
+```html
+<!-- Раскрывающийся список -->
+<div role="combobox" aria-haspopup="listbox" aria-expanded="false">
+    <input type="text" role="combobox" aria-autocomplete="list" aria-controls="suggestions">
+    <ul id="suggestions" role="listbox">
+        <li role="option">Вариант 1</li>
+        <li role="option">Вариант 2</li>
+    </ul>
+</div>
+
+<!-- Вкладки -->
+<div role="tablist">
+    <button role="tab" aria-selected="true" aria-controls="panel1">Вкладка 1</button>
+    <button role="tab" aria-selected="false" aria-controls="panel2">Вкладка 2</button>
+</div>
+
+<div id="panel1" role="tabpanel" aria-labelledby="tab1">
+    Содержимое первой вкладки
+</div>
+<div id="panel2" role="tabpanel" aria-labelledby="tab2" hidden>
+    Содержимое второй вкладки
+</div>
+```
+
+## Клавиатурная навигация
+
+### Атрибут `tabindex`
+
+```html
+<!-- Элемент в порядке табуляции -->
+<input type="text" tabindex="0">
+
+<!-- Элемент в специфическом порядке табуляции -->
+<input type="text" tabindex="1">
+<button tabindex="2">Кнопка</button>
+
+<!-- Элемент исключенный из табуляции -->
+<div tabindex="-1">Не получает фокус при табуляции</div>
+```
+
+### Пропуск навигации
+
+```html
+<!-- Ссылка для пропуска навигации -->
+<a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/about">О нас</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+    <h1>Основное содержимое</h1>
+    <p>Текст страницы...</p>
+</main>
+```
+
+## Формы и доступность
+
+### Правильная разметка форм
+
+```html
+<!-- Использование label -->
+<label for="email">Email:</label>
+<input type="email" id="email" name="email">
+
+<!-- Вложенная метка -->
+<label>
+    <input type="checkbox" name="subscribe"> Подписаться на рассылку
+</label>
+
+<!-- Группировка элементов -->
+<fieldset>
+    <legend>Выберите ваш пол:</legend>
+    <label><input type="radio" name="gender" value="male"> Мужской</label>
+    <label><input type="radio" name="gender" value="female"> Женский</label>
+</fieldset>
+
+<!-- Ошибки формы -->
+<label for="password">Пароль:</label>
+<input type="password" id="password" name="password" aria-describedby="password-error">
+<div id="password-error" class="error" aria-live="polite">Пароль должен содержать не менее 8 символов</div>
+```
+
+### Состояния формы
+
+```html
+<!-- Фокус на элементе формы -->
+<input type="text" id="search" name="search" aria-label="Поиск" autofocus>
+
+<!-- Неактивный элемент -->
+<button disabled aria-disabled="true">Неактивная кнопка</button>
+
+<!-- Обязательное поле -->
+<label for="name">Имя (обязательно):</label>
+<input type="text" id="name" name="name" required aria-required="true">
+```
+
+## Цвет и контрастность
+
+### Контрастность текста
+
+```css
+/* Достаточная контрастность для нормального текста (3:1) */
+.high-contrast-text {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Достаточная контрастность для крупного текста (4.5:1) */
+.normal-contrast-text {
+    color: #333333;
+    background-color: #ffffff;
+}
+
+/* Недостаточная контрастность (избегать) */
+.low-contrast-text {
+    color: #aaaaaa;
+    background-color: #eeeeee;
+}
+```
+
+## Стили фокуса
+
+```css
+/* Видимый фокус для клавиатурной навигации */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+/* Никогда не удалять outline без замены */
+/* ПЛОХО: a:focus { outline: none; } */
+
+/* ХОРОШО: Заменить outline на другой видимый индикатор */
+button:focus {
+    outline: 2px solid #007acc;
+    background-color: #e6f0ff;
+}
+```
+
+## Семантические таблицы
+
+```html
+<!-- Правильная разметка таблицы -->
+<table>
+    <caption>Ежемесячные продажи за 2023 год</caption>
+    <thead>
+        <tr>
+            <th scope="col">Месяц</th>
+            <th scope="col">Продажи</th>
+            <th scope="col">Рост</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Январь</th>
+            <td>100,000</td>
+            <td>+5%</td>
+        </tr>
+        <tr>
+            <th scope="row">Февраль</th>
+            <td>110,000</td>
+            <td>+10%</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+## Динамическое содержимое
+
+### ARIA live области
+
+```html
+<!-- Область с динамическим содержимым -->
+<div aria-live="polite" aria-atomic="false" id="notifications">
+    <!-- Сообщения будут добавляться сюда -->
+</div>
+
+<!-- Важные сообщения -->
+<div aria-live="assertive" id="alerts">
+    <!-- Критические уведомления -->
+</div>
+```
+
+### Пример с JavaScript
+
+```html
+<button onclick="showNotification()">Показать уведомление</button>
+<div id="notification-area" aria-live="polite"></div>
+
+<script>
+function showNotification() {
+    const area = document.getElementById('notification-area');
+    area.textContent = 'Уведомление: Действие выполнено успешно!';
+}
+</script>
+```
+
+## Проверка доступности
+
+### Инструменты для проверки
+
+1. **Встроенные инструменты браузера** (инспектор DOM, проверка контраста)
+2. **Расширения браузера**: axe, WAVE, Lighthouse
+3. **Командная строка**: pa11y, axe-core
+4. **Онлайн инструменты**: WebAIM WAVE, Accessibility Insights
+
+### Пример проверки с axe-core
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница с проверкой доступности</title>
+    <script src="https://cdn.jsdelivr.net/npm/axe-core@4.7.2/axe.min.js"></script>
+</head>
+<body>
+    <div id="main-content">
+        <h1>Основной заголовок</h1>
+        <p>Содержимое страницы</p>
+    </div>
+
+    <script>
+        axe.run('#main-content', {
+            runOnly: {
+                type: 'tag',
+                values: ['wcag2a', 'wcag2aa']
+            }
+        }, function(err, results) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            if (results.violations.length) {
+                console.log('Найдены проблемы доступности:', results.violations);
+            } else {
+                console.log('Страница соответствует стандартам доступности');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+## Заключение
+
+Доступность - это не опциональная функция, а важная часть разработки веб-сайтов. Использование семантической разметки, правильных атрибутов ARIA, обеспечение клавиатурной навигации и контрастности текста помогает создавать более доступные, SEO-оптимизированные и поддерживаемые веб-страницы. Регулярная проверка доступности в процессе разработки позволяет выявлять и устранять проблемы на ранних стадиях.
+
+## Современные принципы доступности
+
+### Инклюзивный дизайн
+Инклюзивный дизайн — это подход к созданию продуктов и услуг, которые могут использовать все люди, включая тех, у кого есть ограниченные возможности. В контексте веб-доступности это означает:
+
+```html
+<!-- Пример инклюзивного дизайна -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инклюзивный веб-сайт</title>
+    <style>
+        /* Гибкая вёрстка для адаптации под разные устройства */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Увеличенные сенсорные зоны для удобства использования */
+        .button, .link {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 12px 16px;
+        }
+
+        /* Достаточный контраст текста */
+        body {
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Увеличенный размер шрифта по умолчанию */
+        body {
+            font-size: 18px; /* или 1.125rem */
+            line-height: 1.5;
+        }
+
+        /* Фокусные индикаторы */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid #007acc;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Структура с семантическими элементами -->
+    <header role="banner">
+        <h1>Название сайта</h1>
+        <nav role="navigation" aria-label="Основная навигация">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <article>
+            <header>
+                <h1 itemprop="headline">Заголовок статьи</h1>
+            </header>
+            <section>
+                <h2>Введение</h2>
+                <p>Содержимое статьи...</p>
+            </section>
+        </article>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2023 Все права защищены</p>
+    </footer>
+</body>
+</html>
+```
+
+### Адаптивность и отзывчивость
+Веб-сайт должен адаптироваться к различным условиям использования:
+
+```html
+<!-- Адаптивная навигация -->
+<nav role="navigation" aria-label="Мобильная навигация">
+    <button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Открыть/закрыть меню</span>
+        <span class="menu-icon" aria-hidden="true">☰</span>
+    </button>
+
+    <ul id="mobile-menu" hidden>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/contact">Контакты</a></li>
+    </ul>
+</nav>
+
+<script>
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+    this.setAttribute('aria-expanded', !isExpanded);
+    menu.hidden = isExpanded;
+});
+</script>
+
+<style>
+/* Стили для адаптивной навигации */
+@media (max-width: 768px) {
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav li {
+        display: block;
+    }
+}
+</style>
+```
+
+## Расширенные техники доступности
+
+### Когнитивная доступность
+Создание контента, который легко понимать и использовать людям с когнитивными особенностями:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Когнитивная доступность</title>
+    <style>
+        /* Простая и понятная визуальная структура */
+        .page-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif; /* Избегаем декоративных шрифтов */
+        }
+
+        /* Четкая иерархия заголовков */
+        h1, h2, h3, h4 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Достаточный интервал между элементами */
+        p, ul, ol, div {
+            margin-bottom: 1em;
+        }
+
+        /* Высококонтрастные цвета для важных элементов */
+        .important {
+            background-color: #fff9c4; /* мягкий желтый фон */
+            border-left: 4px solid #f57f17; /* контрастная граница */
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Как использовать наш сервис</h1>
+
+        <div class="important">
+            <p><strong>Важно:</strong> Прежде чем начать, убедитесь, что у вас есть все необходимые документы.</p>
+        </div>
+
+        <ol>
+            <li>
+                <h3>Шаг 1: Регистрация</h3>
+                <p>Перейдите на страницу регистрации и заполните форму.</p>
+            </li>
+            <li>
+                <h3>Шаг 2: Подтверждение</h3>
+                <p>Проверьте ваш email и подтвердите регистрацию по ссылке.</p>
+            </li>
+            <li>
+                <h3>Шаг 3: Использование сервиса</h3>
+                <p>После подтверждения вы можете начать использовать сервис.</p>
+            </li>
+        </ol>
+
+        <section aria-labelledby="faq-title">
+            <h2 id="faq-title">Часто задаваемые вопросы</h2>
+            <details>
+                <summary>Как сбросить пароль?</summary>
+                <p>Нажмите на ссылку "Забыли пароль" на странице входа.</p>
+            </details>
+            <details>
+                <summary>Как связаться с поддержкой?</summary>
+                <p>Используйте форму обратной связи или напишите на support@example.com</p>
+            </details>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Сенсорная доступность
+Обеспечение удобства использования для людей с сенсорными ограничениями:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сенсорная доступность</title>
+    <style>
+        /* Увеличенные сенсорные зоны */
+        .clickable-area {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 12px;
+            margin: 8px;
+            display: inline-block;
+        }
+
+        /* Предотвращение анимации */
+        .reduced-motion {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+
+        /* Стили для режима высокой контрастности */
+        @media (prefers-contrast: high) {
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            .button {
+                border: 2px solid white;
+                background-color: black;
+                color: white;
+            }
+        }
+
+        /* Стили для пользователей, предпочитающих уменьшенную анимацию */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="clickable-area">Большая кнопка</button>
+    <a href="/page" class="clickable-area">Большая ссылка</a>
+
+    <div class="animated-element" aria-label="Анимированный элемент">
+        <!-- Содержимое с анимацией -->
+    </div>
+</body>
+</html>
+```
+
+## Доступность мультимедиа
+
+### Видео и аудио контент
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступность мультимедиа</title>
+</head>
+<body>
+    <main>
+        <h1>Обучающее видео по HTML</h1>
+
+        <figure>
+            <video controls
+                   width="640"
+                   height="360"
+                   preload="metadata"
+                   aria-describedby="video-description">
+                <source src="movie.mp4" type="video/mp4">
+                <source src="movie.webm" type="video/webm">
+
+                <!-- Треки субтитров и описаний -->
+                <track kind="subtitles"
+                       src="subtitles-ru.vtt"
+                       srclang="ru"
+                       label="Русские"
+                       default>
+                <track kind="subtitles"
+                       src="subtitles-en.vtt"
+                       srclang="en"
+                       label="English">
+                <track kind="descriptions"
+                       src="descriptions.vtt"
+                       srclang="ru"
+                       label="Описания для слабовидящих">
+                <track kind="captions"
+                       src="captions.vtt"
+                       srclang="ru"
+                       label="Титры (включая звуки)">
+
+                Ваш браузер не поддерживает видео элемент.
+            </video>
+
+            <figcaption id="video-description">
+                Обучающее видео по основам HTML. Продолжительность: 15 минут.
+            </figcaption>
+        </figure>
+
+        <!-- Аудио с транскрипцией -->
+        <figure>
+            <audio controls aria-describedby="audio-description">
+                <source src="podcast.mp3" type="audio/mpeg">
+                <source src="podcast.ogg" type="audio/ogg">
+                Ваш браузер не поддерживает аудио элемент.
+            </audio>
+
+            <figcaption id="audio-description">
+                Подкаст о современных веб-технологиях
+            </figcaption>
+        </figure>
+
+        <!-- Транскрипция аудио -->
+        <section aria-labelledby="transcription-title">
+            <h2 id="transcription-title">Транскрипция подкаста</h2>
+            <div class="transcription">
+                <p><strong>Ведущий:</strong> Добро пожаловать на наш подкаст о веб-технологиях...</p>
+                <p><strong>Гость:</strong> Сегодня мы поговорим о последних тенденциях в веб-разработке...</p>
+                <!-- Полная транскрипция -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Изображения и визуальный контент
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступность изображений</title>
+</head>
+<body>
+    <main>
+        <h1>Доступные изображения</h1>
+
+        <!-- Декоративное изображение -->
+        <img src="decorative-border.png" alt="" role="presentation">
+
+        <!-- Контентное изображение -->
+        <img src="chart.png"
+             alt="Диаграмма роста пользователей за последние 12 месяцев. Наблюдается стабильный рост с 1000 до 5000 пользователей."
+             longdesc="chart-description.html">
+
+        <!-- Информативное изображение с подробным описанием -->
+        <figure>
+            <img src="infographic.png"
+                 alt="Инфографика о преимуществах доступного веб-дизайна">
+            <figcaption>
+                Инфографика показывает, как доступный дизайн улучшает опыт всех пользователей.
+            </figcaption>
+        </figure>
+
+        <!-- Изображение с функцией -->
+        <button aria-label="Закрыть модальное окно">
+            <img src="close-icon.png" alt="">
+        </button>
+
+        <!-- Комплексное изображение с детализированным описанием -->
+        <div class="image-with-description">
+            <img src="complex-diagram.png"
+                 alt="Сложная диаграмма системных взаимодействий"
+                 aria-describedby="diagram-details">
+            <div id="diagram-details">
+                <h3>Описание диаграммы</h3>
+                <p>Диаграмма показывает взаимодействие между различными компонентами системы...</p>
+                <ul>
+                    <li>Компонент A взаимодействует с Компонентом B через API</li>
+                    <li>Компонент B обрабатывает данные и передает их Компоненту C</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+```
+
+## Современные инструменты доступности
+
+### Интеграция с Web APIs и доступность
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступность с Web APIs</title>
+    <style>
+        .accessibility-api-demo {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .api-controls {
+            margin-bottom: 20px;
+        }
+
+        .api-controls button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .result-container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .success {
+            color: #2e7d32;
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="accessibility-api-demo">
+        <h1>Доступность с Web APIs</h1>
+        
+        <div class="api-controls">
+            <button onclick="checkAccessibility()">Проверить доступность</button>
+            <button onclick="enableHighContrast()">Включить высокий контраст</button>
+            <button onclick="disableAnimations()">Отключить анимации</button>
+        </div>
+        
+        <div class="result-container" id="api-results">
+            <p>Результаты API проверки будут отображаться здесь.</p>
+        </div>
+    </div>
+
+    <script>
+        class AccessibilityAPIManager {
+            constructor() {
+                this.resultsContainer = document.getElementById('api-results');
+                this.setupAPIFeatures();
+            }
+            
+            setupAPIFeatures() {
+                // Проверка предпочтений пользователя
+                this.checkUserPreferences();
+                
+                // Установка наблюдателей за изменениями
+                this.setupPreferenceObservers();
+            }
+            
+            checkUserPreferences() {
+                // Проверка предпочтения уменьшенной анимации
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    this.applyReducedMotionStyles();
+                }
+                
+                // Проверка предпочтения высокого контраста
+                if (window.matchMedia('(prefers-contrast: high)').matches) {
+                    this.applyHighContrastStyles();
+                }
+                
+                // Проверка предпочтения цветовой схемы
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    this.applyDarkModeStyles();
+                }
+                
+                // Проверка предпочтения уменьшенной прозрачности
+                if (window.matchMedia('(prefers-reduced-transparency: reduce)').matches) {
+                    this.applyReducedTransparencyStyles();
+                }
+            }
+            
+            setupPreferenceObservers() {
+                // Наблюдение за изменениями предпочтений
+                window.matchMedia('(prefers-reduced-motion: reduce)')
+                      .addEventListener('change', this.handleReducedMotionChange.bind(this));
+                
+                window.matchMedia('(prefers-contrast: high)')
+                      .addEventListener('change', this.handleHighContrastChange.bind(this));
+                
+                window.matchMedia('(prefers-color-scheme: dark)')
+                      .addEventListener('change', this.handleColorSchemeChange.bind(this));
+                
+                window.matchMedia('(prefers-reduced-transparency: reduce)')
+                      .addEventListener('change', this.handleReducedTransparencyChange.bind(this));
+            }
+            
+            handleReducedMotionChange(e) {
+                if (e.matches) {
+                    this.applyReducedMotionStyles();
+                    this.announceToScreenReader('Анимации отключены согласно пользовательским предпочтениям');
+                } else {
+                    this.removeReducedMotionStyles();
+                }
+            }
+            
+            handleHighContrastChange(e) {
+                if (e.matches) {
+                    this.applyHighContrastStyles();
+                    this.announceToScreenReader('Включен режим высокого контраста');
+                } else {
+                    this.removeHighContrastStyles();
+                }
+            }
+            
+            handleColorSchemeChange(e) {
+                if (e.matches === 'dark') {
+                    this.applyDarkModeStyles();
+                    this.announceToScreenReader('Включена темная тема');
+                } else {
+                    this.applyLightModeStyles();
+                    this.announceToScreenReader('Включена светлая тема');
+                }
+            }
+            
+            handleReducedTransparencyChange(e) {
+                if (e.matches) {
+                    this.applyReducedTransparencyStyles();
+                } else {
+                    this.removeReducedTransparencyStyles();
+                }
+            }
+            
+            applyReducedMotionStyles() {
+                document.body.classList.add('reduced-motion');
+            }
+            
+            removeReducedMotionStyles() {
+                document.body.classList.remove('reduced-motion');
+            }
+            
+            applyHighContrastStyles() {
+                document.body.classList.add('high-contrast');
+            }
+            
+            removeHighContrastStyles() {
+                document.body.classList.remove('high-contrast');
+            }
+            
+            applyDarkModeStyles() {
+                document.body.classList.add('dark-mode');
+            }
+            
+            applyLightModeStyles() {
+                document.body.classList.remove('dark-mode');
+            }
+            
+            applyReducedTransparencyStyles() {
+                document.body.classList.add('reduced-transparency');
+            }
+            
+            removeReducedTransparencyStyles() {
+                document.body.classList.remove('reduced-transparency');
+            }
+            
+            checkAccessibility() {
+                // Проверка доступности через JavaScript API
+                const checks = {
+                    highContrast: window.matchMedia('(prefers-contrast: high)').matches,
+                    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+                    darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+                    reducedTransparency: window.matchMedia('(prefers-reduced-transparency: reduce)').matches,
+                    reducedData: window.matchMedia('(prefers-reduced-data: reduce)').matches,
+                    screenReaderDetected: this.detectScreenReader(),
+                    keyboardOnly: this.isKeyboardOnlyUser()
+                };
+                
+                this.displayResults(checks);
+                
+                // Отправка отчета о доступности
+                this.reportAccessibilityStatus(checks);
+            }
+            
+            detectScreenReader() {
+                // Простая эвристика для определения скринридера
+                let isUsingScreenReader = false;
+                
+                // Проверка по времени между фокусами
+                let lastFocusTime = 0;
+                
+                document.addEventListener('focus', (e) => {
+                    const currentTime = Date.now();
+                    const timeDiff = currentTime - lastFocusTime;
+                    
+                    if (timeDiff < 100) { // Быстрая навигация - вероятно скринридер
+                        isUsingScreenReader = true;
+                    }
+                    
+                    lastFocusTime = currentTime;
+                }, true);
+                
+                return isUsingScreenReader;
+            }
+            
+            isKeyboardOnlyUser() {
+                // Определение пользователей, использующих только клавиатуру
+                let isKeyboardUser = false;
+                
+                document.addEventListener('keydown', () => {
+                    isKeyboardUser = true;
+                });
+                
+                document.addEventListener('mousedown', () => {
+                    isKeyboardUser = false;
+                });
+                
+                return isKeyboardUser;
+            }
+            
+            displayResults(checks) {
+                this.resultsContainer.innerHTML = `
+                    <div class="accessibility-checks">
+                        <h3>Результаты проверки доступности:</h3>
+                        <ul>
+                            <li><strong>Высокий контраст:</strong> ${checks.highContrast ? '✓' : '✗'}</li>
+                            <li><strong>Уменьшенная анимация:</strong> ${checks.reducedMotion ? '✓' : '✗'}</li>
+                            <li><strong>Темная тема:</strong> ${checks.darkMode ? '✓' : '✗'}</li>
+                            <li><strong>Уменьшенная прозрачность:</strong> ${checks.reducedTransparency ? '✓' : '✗'}</li>
+                            <li><strong>Скринридер:</strong> ${checks.screenReaderDetected ? '✓' : '✗'}</li>
+                            <li><strong>Только клавиатура:</strong> ${checks.keyboardOnly ? '✓' : '✗'}</li>
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            reportAccessibilityStatus(checks) {
+                // Отправка отчета о статусе доступности
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('/api/accessibility-report', JSON.stringify(checks));
+                } else {
+                    fetch('/api/accessibility-report', {
+                        method: 'POST',
+                        body: JSON.stringify(checks),
+                        headers: { 'Content-Type': 'application/json' }
+                    }).catch(console.error);
+                }
+            }
+            
+            announceToScreenReader(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = message;
+                
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    if (document.body.contains(announcement)) {
+                        document.body.removeChild(announcement);
+                    }
+                }, 3000);
+            }
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibilityAPIManager();
+        });
+        
+        function checkAccessibility() {
+            // Глобальная функция для кнопки
+            document.querySelector('.accessibility-api-demo').checkAccessibility();
+        }
+        
+        function enableHighContrast() {
+            document.body.classList.add('high-contrast');
+        }
+        
+        function disableAnimations() {
+            document.body.classList.add('reduced-motion');
+        }
+    </script>
+</body>
+</html>
+```
+
+### Доступные Web Components
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступные Web Components</title>
+</head>
+<body>
+    <h1>Доступные Web Components</h1>
+    
+    <accessible-modal title="Доступное модальное окно" id="accessible-modal">
+        <modal-content>
+            <h2>Заголовок модального окна</h2>
+            <p>Содержимое модального окна с полной поддержкой доступности.</p>
+            <button onclick="closeModal()">Закрыть</button>
+        </modal-content>
+    </accessible-modal>
+    
+    <form-validator form-id="user-form" id="accessible-validator"></form-validator>
+
+    <script>
+        // Доступное модальное окно
+        class AccessibleModal extends HTMLElement {
+            constructor() {
+                super();
+                
+                this.attachShadow({ mode: 'open' });
+                
+                this.render();
+                this.setupAccessibility();
+            }
+            
+            static get observedAttributes() {
+                return ['title', 'open'];
+            }
+            
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (oldValue !== newValue) {
+                    if (name === 'open') {
+                        if (newValue !== null) {
+                            this.openModal();
+                        } else {
+                            this.closeModal();
+                        }
+                    }
+                }
+            }
+            
+            render() {
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        :host {
+                            display: none;
+                        }
+                        
+                        :host([open]) {
+                            display: block;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0,0,0,0.5);
+                            z-index: 1000;
+                        }
+                        
+                        .modal-content {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            min-width: 300px;
+                            max-width: 600px;
+                            max-height: 80vh;
+                            overflow-y: auto;
+                        }
+                        
+                        .modal-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 15px;
+                            padding-bottom: 10px;
+                            border-bottom: 1px solid #eee;
+                        }
+                        
+                        .close-button {
+                            background: none;
+                            border: none;
+                            font-size: 1.5em;
+                            cursor: pointer;
+                            padding: 0;
+                            width: 30px;
+                            height: 30px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        
+                        .modal-body {
+                            margin-bottom: 20px;
+                        }
+                        
+                        .modal-footer {
+                            text-align: right;
+                        }
+                        
+                        .modal-actions {
+                            display: flex;
+                            gap: 10px;
+                            justify-content: flex-end;
+                        }
+                        
+                        .modal-content:focus {
+                            outline: none;
+                        }
+                    </style>
+                    
+                    <div class="modal-content" 
+                         role="dialog" 
+                         aria-modal="true" 
+                         aria-labelledby="modal-title"
+                         tabindex="-1">
+                        <div class="modal-header">
+                            <h2 id="modal-title">${this.getAttribute('title') || 'Модальное окно'}</h2>
+                            <button class="close-button" 
+                                    aria-label="Закрыть модальное окно" 
+                                    onclick="this.closeModal()">
+                                ×
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <slot name="content"></slot>
+                        </div>
+                        <div class="modal-footer">
+                            <slot name="actions"></slot>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            setupAccessibility() {
+                this.modalContent = this.shadowRoot.querySelector('.modal-content');
+                this.closeButton = this.shadowRoot.querySelector('.close-button');
+                
+                // Управление фокусом
+                this.focusableElements = this.shadowRoot.querySelectorAll(
+                    'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                
+                // Обработка клавиатурных событий
+                this.addEventListener('keydown', this.handleKeydown.bind(this));
+            }
+            
+            openModal() {
+                this.setAttribute('open', '');
+                
+                // Сохраняем текущий элемент с фокусом
+                this.previousFocusedElement = document.activeElement;
+                
+                // Устанавливаем фокус на модальное окно
+                this.modalContent.focus();
+                
+                // Управляем фокусом внутри модального окна
+                this.trapFocus();
+            }
+            
+            closeModal() {
+                this.removeAttribute('open');
+                
+                // Возвращаем фокус на предыдущий элемент
+                if (this.previousFocusedElement) {
+                    this.previousFocusedElement.focus();
+                }
+            }
+            
+            trapFocus() {
+                this.modalContent.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        this.handleTabKey(e);
+                    }
+                });
+            }
+            
+            handleTabKey(event) {
+                const focusable = this.shadowRoot.querySelectorAll(
+                    'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                
+                if (event.shiftKey && document.activeElement === first) {
+                    last.focus();
+                    event.preventDefault();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    first.focus();
+                    event.preventDefault();
+                }
+            }
+            
+            handleKeydown(event) {
+                if (event.key === 'Escape' && this.hasAttribute('open')) {
+                    this.closeModal();
+                }
+            }
+        }
+        
+        // Доступный валидатор форм
+        class AccessibleFormValidator extends HTMLElement {
+            constructor() {
+                super();
+                
+                this.attachShadow({ mode: 'open' });
+                this.form = null;
+                
+                this.render();
+            }
+            
+            static get observedAttributes() {
+                return ['form-id'];
+            }
+            
+            connectedCallback() {
+                const formId = this.getAttribute('form-id');
+                if (formId) {
+                    this.form = document.getElementById(formId);
+                    if (this.form) {
+                        this.setupFormValidation();
+                    }
+                }
+            }
+            
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (oldValue !== newValue) {
+                    if (name === 'form-id') {
+                        this.form = document.getElementById(newValue);
+                        if (this.form) {
+                            this.setupFormValidation();
+                        }
+                    }
+                }
+            }
+            
+            render() {
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        :host {
+                            display: block;
+                        }
+                        
+                        .validation-results {
+                            margin-top: 1rem;
+                            padding: 0.75rem;
+                            border-radius: 4px;
+                            font-size: 0.9rem;
+                        }
+                        
+                        .validation-success {
+                            background-color: #d4edda;
+                            color: #155724;
+                        }
+                        
+                        .validation-error {
+                            background-color: #f8d7da;
+                            color: #721c24;
+                        }
+                        
+                        .error-list {
+                            margin: 0;
+                            padding-left: 1.5rem;
+                            margin-top: 0.5rem;
+                        }
+                        
+                        .error-item {
+                            margin-bottom: 0.25rem;
+                        }
+                    </style>
+                    
+                    <div class="validation-results" 
+                         id="validation-results" 
+                         role="status" 
+                         aria-live="polite"></div>
+                `;
+            }
+            
+            setupFormValidation() {
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.validateForm();
+                });
+                
+                // Валидация в реальном времени
+                this.form.addEventListener('input', (e) => {
+                    if (e.target.matches('input[required], textarea[required], select[required]')) {
+                        this.validateField(e.target);
+                    }
+                });
+            }
+            
+            validateForm() {
+                let isValid = true;
+                const errors = [];
+                
+                const requiredFields = this.form.querySelectorAll('input[required], textarea[required], select[required]');
+                requiredFields.forEach(field => {
+                    if (!this.validateField(field)) {
+                        isValid = false;
+                        errors.push({
+                            field: field.name || field.id,
+                            message: this.getFieldErrorMessage(field)
+                        });
+                    }
+                });
+                
+                if (isValid) {
+                    this.showSuccess('Форма валидна. Готова к отправке.');
+                } else {
+                    this.showError(errors);
+                }
+                
+                return isValid;
+            }
+            
+            validateField(field) {
+                field.classList.remove('invalid');
+                field.setAttribute('aria-invalid', 'false');
+                
+                // Основные проверки
+                if (field.hasAttribute('required') && !field.value.trim()) {
+                    field.classList.add('invalid');
+                    field.setAttribute('aria-invalid', 'true');
+                    return false;
+                }
+                
+                if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+                    field.classList.add('invalid');
+                    field.setAttribute('aria-invalid', 'true');
+                    return false;
+                }
+                
+                if (field.minLength && field.value.length < field.minLength) {
+                    field.classList.add('invalid');
+                    field.setAttribute('aria-invalid', 'true');
+                    return false;
+                }
+                
+                if (field.maxLength && field.value.length > field.maxLength) {
+                    field.classList.add('invalid');
+                    field.setAttribute('aria-invalid', 'true');
+                    return false;
+                }
+                
+                field.classList.remove('invalid');
+                field.setAttribute('aria-invalid', 'false');
+                return true;
+            }
+            
+            isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            getFieldErrorMessage(field) {
+                if (field.hasAttribute('required') && !field.value.trim()) {
+                    return 'Поле обязательно для заполнения';
+                } else if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+                    return 'Введите действительный email адрес';
+                } else if (field.minLength && field.value.length < field.minLength) {
+                    return `Минимум ${field.minLength} символов`;
+                } else if (field.maxLength && field.value.length > field.maxLength) {
+                    return `Максимум ${field.maxLength} символов`;
+                }
+                return 'Неверный формат данных';
+            }
+            
+            showError(errors) {
+                const resultsElement = this.shadowRoot.getElementById('validation-results');
+                resultsElement.className = 'validation-results validation-error';
+                
+                resultsElement.innerHTML = `
+                    <strong>Найдены ошибки (${errors.length}):</strong>
+                    <ul class="error-list">
+                        ${errors.map(error => `
+                            <li class="error-item">
+                                ${error.field}: ${error.message}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            }
+            
+            showSuccess(message) {
+                const resultsElement = this.shadowRoot.getElementById('validation-results');
+                resultsElement.className = 'validation-results validation-success';
+                resultsElement.innerHTML = `<strong>✓</strong> ${message}`;
+            }
+        }
+        
+        // Регистрация элементов
+        customElements.define('accessible-modal', AccessibleModal);
+        customElements.define('form-validator', AccessibleFormValidator);
+        
+        // Глобальные функции для демонстрации
+        function openModal() {
+            document.getElementById('accessible-modal').openModal();
+        }
+        
+        function closeModal() {
+            document.getElementById('accessible-modal').closeModal();
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .reduced-motion * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        .high-contrast {
+            background-color: black !important;
+            color: white !important;
+        }
+        
+        .high-contrast button {
+            border: 2px solid white !important;
+            background-color: black !important;
+            color: white !important;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</body>
+</html>
+```
+
+## Практические примеры и шаблоны
+
+### Шаблон доступной формы с многоуровневой валидацией
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступная форма с многоуровневой валидацией</title>
+</head>
+<body>
+    <h1>Доступная форма с многоуровневой валидацией</h1>
+    
+    <form id="accessible-multi-layer-form" novalidate>
+        <!-- Уровень 1: Семантическая разметка -->
+        <fieldset>
+            <legend>Личная информация</legend>
+            
+            <div class="form-group">
+                <label for="acc-name">Имя: <span class="required" aria-label="обязательное поле">*</span></label>
+                <input type="text"
+                       id="acc-name"
+                       name="name"
+                       required
+                       minlength="2"
+                       maxlength="50"
+                       autocomplete="name"
+                       aria-describedby="name-help name-error"
+                       aria-invalid="false">
+                <div id="name-help" class="help-text">Введите ваше имя</div>
+                <div id="name-error" class="error-message" role="alert" aria-live="assertive"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="acc-email">Email: <span class="required" aria-label="обязательное поле">*</span></label>
+                <input type="email"
+                       id="acc-email"
+                       name="email"
+                       required
+                       autocomplete="email"
+                       aria-describedby="email-help email-error"
+                       aria-invalid="false">
+                <div id="email-help" class="help-text">Введите действительный email адрес</div>
+                <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+            </div>
+        </fieldset>
+        
+        <!-- Уровень 2: Доступность -->
+        <fieldset>
+            <legend>Настройки аккаунта</legend>
+            
+            <div class="form-group">
+                <label for="acc-username">Имя пользователя: <span class="required" aria-label="обязательное поле">*</span></label>
+                <input type="text"
+                       id="acc-username"
+                       name="username"
+                       required
+                       minlength="3"
+                       maxlength="30"
+                       pattern="[A-Za-z0-9_]+"
+                       autocomplete="username"
+                       aria-describedby="username-help username-error"
+                       aria-invalid="false">
+                <div id="username-help" class="help-text">Только буквы, цифры и подчеркивание, 3-30 символов</div>
+                <div id="username-error" class="error-message" role="alert" aria-live="assertive"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="acc-password">Пароль: <span class="required" aria-label="обязательное поле">*</span></label>
+                <input type="password"
+                       id="acc-password"
+                       name="password"
+                       required
+                       minlength="8"
+                       aria-describedby="password-requirements password-error"
+                       aria-invalid="false">
+                <ul id="password-requirements" class="requirements-list">
+                    <li id="req-length">Не менее 8 символов</li>
+                    <li id="req-upper">С заглавной буквой</li>
+                    <li id="req-lower">Со строчной буквой</li>
+                    <li id="req-number">С цифрой</li>
+                    <li id="req-special">Со специальным символом</li>
+                </ul>
+                <div id="password-error" class="error-message" role="alert" aria-live="assertive"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="acc-confirm">Подтверждение пароля: <span class="required" aria-label="обязательное поле">*</span></label>
+                <input type="password"
+                       id="acc-confirm"
+                       name="confirm_password"
+                       required
+                       aria-describedby="confirm-error"
+                       aria-invalid="false">
+                <div id="confirm-error" class="error-message" role="alert" aria-live="assertive"></div>
+            </div>
+        </fieldset>
+        
+        <!-- Уровень 3: Безопасность -->
+        <fieldset>
+            <legend>Дополнительная информация</legend>
+            
+            <div class="form-group">
+                <label for="acc-bio">О себе:</label>
+                <textarea id="acc-bio"
+                          name="bio"
+                          rows="4"
+                          maxlength="500"
+                          aria-describedby="bio-help bio-error"
+                          aria-invalid="false"></textarea>
+                <div id="bio-help" class="help-text">Расскажите немного о себе (максимум 500 символов)</div>
+                <div id="bio-error" class="error-message" role="alert" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox"
+                           name="newsletter"
+                           value="yes">
+                    Подписаться на рассылку
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox"
+                           name="terms"
+                           required
+                           aria-describedby="terms-description">
+                    Я согласен с условиями использования <span class="required" aria-label="обязательное поле">*</span>
+                </label>
+                <div id="terms-description" class="help-text">Обязательное поле для регистрации</div>
+                <div id="terms-error" class="error-message" role="alert" aria-live="assertive"></div>
+            </div>
+        </fieldset>
+        
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <script>
+        class AccessibleMultiLayerForm {
+            constructor(formId) {
+                this.form = document.getElementById(formId);
+                this.layers = [];
+                this.setupValidationLayers();
+            }
+            
+            setupValidationLayers() {
+                // Уровень 1: Семантическая валидация
+                this.layers.push(new SemanticValidationLayer());
+                
+                // Уровень 2: Валидация доступности
+                this.layers.push(new AccessibilityValidationLayer());
+                
+                // Уровень 3: Валидация безопасности
+                this.layers.push(new SecurityValidationLayer());
+                
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.validateAndSubmit();
+                });
+                
+                // Валидация в реальном времени
+                this.form.addEventListener('input', (e) => {
+                    if (e.target.matches('input[required], textarea[required]')) {
+                        this.validateField(e.target);
+                    }
+                });
+                
+                // Валидация при потере фокуса
+                this.form.addEventListener('blur', (e) => {
+                    if (e.target.matches('input, textarea, select')) {
+                        this.validateField(e.target);
+                    }
+                }, true);
+            }
+            
+            async validateAndSubmit() {
+                // Сброс ошибок
+                this.clearAllErrors();
+                
+                let isValid = true;
+                
+                // Проверка всех уровней валидации
+                for (const layer of this.layers) {
+                    if (!await layer.validate(this.form)) {
+                        isValid = false;
+                    }
+                }
+                
+                // Проверка всех полей
+                const fields = this.form.querySelectorAll('input[required], textarea[required]');
+                for (const field of fields) {
+                    if (!this.validateField(field)) {
+                        isValid = false;
+                    }
+                }
+                
+                // Проверка сложных требований
+                if (!this.validatePasswordRequirements()) {
+                    isValid = false;
+                }
+                
+                if (!this.validatePasswordMatch()) {
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    await this.submitSecurely();
+                } else {
+                    this.handleValidationErrors();
+                }
+            }
+            
+            validateField(field) {
+                const fieldName = field.name.replace(/-/g, '');
+                const errorElement = document.getElementById(`${fieldName}-error`);
+                
+                // Сброс предыдущего состояния
+                field.classList.remove('invalid');
+                field.setAttribute('aria-invalid', 'false');
+                if (errorElement) errorElement.textContent = '';
+                
+                // Проверки
+                if (field.hasAttribute('required') && !field.value.trim()) {
+                    this.showFieldError(field, errorElement, 'Это поле обязательно для заполнения');
+                    return false;
+                }
+                
+                if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+                    this.showFieldError(field, errorElement, 'Введите действительный email адрес');
+                    return false;
+                }
+                
+                if (field.minLength && field.value.length < field.minLength) {
+                    this.showFieldError(field, errorElement, `Минимум ${field.minLength} символов`);
+                    return false;
+                }
+                
+                if (field.maxLength && field.value.length > field.maxLength) {
+                    this.showFieldError(field, errorElement, `Максимум ${field.maxLength} символов`);
+                    return false;
+                }
+                
+                if (field.pattern && field.value && !new RegExp(field.pattern).test(field.value)) {
+                    this.showFieldError(field, errorElement, field.title || 'Неверный формат данных');
+                    return false;
+                }
+                
+                // Проверка на опасный контент
+                if (this.containsMaliciousContent(field.value)) {
+                    this.showFieldError(field, errorElement, 'Поле содержит недопустимый контент');
+                    return false;
+                }
+                
+                field.classList.add('valid');
+                return true;
+            }
+            
+            validatePasswordRequirements() {
+                const password = document.getElementById('acc-password').value;
+                const requirements = {
+                    length: password.length >= 8,
+                    upper: /[A-Z]/.test(password),
+                    lower: /[a-z]/.test(password),
+                    number: /[0-9]/.test(password),
+                    special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+                };
+                
+                // Обновление индикаторов требований
+                Object.entries(requirements).forEach(([key, met]) => {
+                    const element = document.getElementById(`req-${key}`);
+                    if (element) {
+                        element.classList.toggle('met', met);
+                    }
+                });
+                
+                const allMet = Object.values(requirements).every(req => req);
+                
+                if (!allMet && password) {
+                    const errorElement = document.getElementById('password-error');
+                    this.showFieldError(document.getElementById('acc-password'), errorElement, 'Пароль не соответствует требованиям');
+                    return false;
+                }
+                
+                return allMet;
+            }
+            
+            validatePasswordMatch() {
+                const password = document.getElementById('acc-password').value;
+                const confirmPassword = document.getElementById('acc-confirm').value;
+                const errorElement = document.getElementById('confirm-error');
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    this.showFieldError(document.getElementById('acc-confirm'), errorElement, 'Пароли не совпадают');
+                    return false;
+                }
+                
+                if (errorElement) errorElement.textContent = '';
+                return true;
+            }
+            
+            showFieldError(field, errorElement, message) {
+                field.classList.add('invalid');
+                field.setAttribute('aria-invalid', 'true');
+                
+                if (errorElement) {
+                    errorElement.textContent = message;
+                }
+                
+                // Устанавливаем фокус на поле с ошибкой
+                if (!field.matches(':focus')) {
+                    field.focus();
+                }
+            }
+            
+            clearAllErrors() {
+                this.form.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+                this.form.querySelectorAll('input, textarea, select').forEach(field => {
+                    field.classList.remove('invalid', 'valid');
+                    field.setAttribute('aria-invalid', 'false');
+                });
+            }
+            
+            isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            containsMaliciousContent(content) {
+                if (typeof content !== 'string') return false;
+                
+                const maliciousPatterns = [
+                    /<script/i,
+                    /javascript:/i,
+                    /on\w+\s*=/i,
+                    /<iframe/i,
+                    /<object/i,
+                    /<embed/i,
+                    /eval\(/i,
+                    /execScript/i
+                ];
+                
+                return maliciousPatterns.some(pattern => pattern.test(content));
+            }
+            
+            async submitSecurely() {
+                const submitBtn = this.form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                // Показываем состояние загрузки
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Сбор и санитизация данных
+                    const formData = new FormData(this.form);
+                    const sanitizedData = {};
+                    
+                    for (const [key, value] of formData.entries()) {
+                        sanitizedData[key] = this.sanitizeInput(value);
+                    }
+                    
+                    const response = await fetch('/api/secure-register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(sanitizedData)
+                    });
+                    
+                    if (response.ok) {
+                        alert('Регистрация прошла успешно!');
+                        this.form.reset();
+                    } else {
+                        const error = await response.json();
+                        alert('Ошибка регистрации: ' + error.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка отправки формы:', error);
+                    alert('Ошибка сети при отправке формы');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }
+            
+            sanitizeInput(input) {
+                if (typeof input !== 'string') return input;
+                
+                return input
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#x27;')
+                    .replace(/&/g, '&amp;')
+                    .replace(/\//g, '&#x2F;')
+                    .trim();
+            }
+            
+            handleValidationErrors() {
+                const errorCount = this.form.querySelectorAll('.error-message:not(:empty)').length;
+                
+                // Объявление для скринридеров
+                this.announceToScreenReader(`Форма содержит ${errorCount} ошибок. Пожалуйста, исправьте их перед отправкой.`);
+                
+                // Установка фокуса на первое поле с ошибкой
+                const firstErrorField = this.form.querySelector('.invalid');
+                if (firstErrorField) {
+                    firstErrorField.focus();
+                }
+            }
+            
+            announceToScreenReader(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = message;
+                
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    if (document.body.contains(announcement)) {
+                        document.body.removeChild(announcement);
+                    }
+                }, 3000);
+            }
+        }
+        
+        // Классы уровней валидации
+        class SemanticValidationLayer {
+            async validate(form) {
+                const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
+                
+                for (const field of requiredFields) {
+                    if (!field.labels || field.labels.length === 0) {
+                        console.warn('Поле не имеет связанной метки:', field.name || field.id);
+                        return false;
+                    }
+                    
+                    if (!field.id) {
+                        console.warn('Поле не имеет ID для метки:', field.name);
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+        }
+        
+        class AccessibilityValidationLayer {
+            async validate(form) {
+                const fields = form.querySelectorAll('input, textarea, select');
+                
+                for (const field of fields) {
+                    // Проверка доступности элемента
+                    if (field.hasAttribute('required') && !field.hasAttribute('aria-describedby')) {
+                        field.setAttribute('aria-describedby', `${field.id}-help`);
+                    }
+                    
+                    // Проверка фокуса
+                    if (!field.hasAttribute('tabindex') && !field.matches('input, select, textarea, button, [contenteditable]')) {
+                        // Проверяем, что элемент может получить фокус
+                        if (field.matches('[role="button"], [role="link"]')) {
+                            field.setAttribute('tabindex', '0');
+                        }
+                    }
+                }
+                
+                return true;
+            }
+        }
+        
+        class SecurityValidationLayer {
+            async validate(form) {
+                // Проверка наличия CSRF токена
+                const csrfToken = form.querySelector('input[name="csrf_token"]');
+                if (!csrfToken) {
+                    console.warn('Отсутствует CSRF токен в форме');
+                }
+                
+                // Проверка на наличие потенциально опасного контента
+                const inputs = form.querySelectorAll('input, textarea');
+                for (const input of inputs) {
+                    if (this.containsMaliciousContent(input.value)) {
+                        console.warn('Обнаружен потенциально опасный контент:', input.name || input.id);
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+            
+            containsMaliciousContent(content) {
+                if (typeof content !== 'string') return false;
+                
+                const maliciousPatterns = [
+                    /<script/i,
+                    /javascript:/i,
+                    /on\w+\s*=/i,
+                    /<iframe/i,
+                    /<object/i,
+                    /<embed/i
+                ];
+                
+                return maliciousPatterns.some(pattern => pattern.test(content));
+            }
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibleMultiLayerForm('accessible-multi-layer-form');
+        });
+    </script>
+    
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        legend {
+            font-weight: bold;
+            padding: 0 0.5rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #007acc;
+            box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+        }
+        
+        input.valid {
+            border-color: #28a745;
+        }
+        
+        input.invalid {
+            border-color: #dc3545;
+        }
+        
+        .help-text {
+            color: #666;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0;
+        }
+        
+        .requirements-list li {
+            padding: 0.25rem 0;
+            font-size: 0.875rem;
+        }
+        
+        .requirements-list li.met {
+            color: #28a745;
+        }
+        
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .required {
+            color: #d32f2f;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</body>
+</html>
+```
+
+### Доступные интерактивные компоненты
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступные интерактивные компоненты</title>
+</head>
+<body>
+    <h1>Доступные интерактивные компоненты</h1>
+    
+    <div class="interactive-components">
+        <div class="component-demo">
+            <h2>Доступные вкладки</h2>
+            <div class="tabs-container">
+                <div class="tabs" role="tablist" aria-label="Пример вкладок">
+                    <button role="tab" 
+                            aria-selected="true" 
+                            aria-controls="panel1" 
+                            id="tab1"
+                            tabindex="0">
+                        Вкладка 1
+                    </button>
+                    <button role="tab" 
+                            aria-selected="false" 
+                            aria-controls="panel2" 
+                            id="tab2"
+                            tabindex="-1">
+                        Вкладка 2
+                    </button>
+                    <button role="tab" 
+                            aria-selected="false" 
+                            aria-controls="panel3" 
+                            id="tab3"
+                            tabindex="-1">
+                        Вкладка 3
+                    </button>
+                </div>
+                
+                <div role="tabpanel" 
+                     id="panel1" 
+                     aria-labelledby="tab1">
+                    <h3>Содержимое первой вкладки</h3>
+                    <p>Это содержимое первой вкладки. Здесь может быть любой контент.</p>
+                </div>
+                
+                <div role="tabpanel" 
+                     id="panel2" 
+                     aria-labelledby="tab2" 
+                     hidden>
+                    <h3>Содержимое второй вкладки</h3>
+                    <p>Это содержимое второй вкладки. Она также может содержать любой контент.</p>
+                </div>
+                
+                <div role="tabpanel" 
+                     id="panel3" 
+                     aria-labelledby="tab3" 
+                     hidden>
+                    <h3>Содержимое третьей вкладки</h3>
+                    <p>Это содержимое третьей вкладки. Все вкладки полностью доступны для клавиатурной навигации.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-demo">
+            <h2>Доступное раскрывающееся меню</h2>
+            <div class="dropdown-container">
+                <button id="dropdown-toggle" 
+                        aria-haspopup="true" 
+                        aria-expanded="false" 
+                        aria-controls="dropdown-menu">
+                    Меню
+                </button>
+                
+                <ul id="dropdown-menu" 
+                    role="menu" 
+                    aria-labelledby="dropdown-toggle" 
+                    hidden>
+                    <li role="menuitem" tabindex="-1"><a href="#">Пункт 1</a></li>
+                    <li role="menuitem" tabindex="-1"><a href="#">Пункт 2</a></li>
+                    <li role="menuitem" tabindex="-1"><a href="#">Пункт 3</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="component-demo">
+            <h2>Доступный аккордеон</h2>
+            <div class="accordion-container">
+                <div class="accordion-item" role="region" aria-labelledby="heading1">
+                    <h3 id="heading1">
+                        <button aria-expanded="true" 
+                                aria-controls="content1" 
+                                onclick="toggleAccordion('content1', this)">
+                            Заголовок 1
+                        </button>
+                    </h3>
+                    <div id="content1" role="region">
+                        <p>Содержимое первого аккордеона. Это содержимое видно по умолчанию.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item" role="region" aria-labelledby="heading2">
+                    <h3 id="heading2">
+                        <button aria-expanded="false" 
+                                aria-controls="content2" 
+                                onclick="toggleAccordion('content2', this)">
+                            Заголовок 2
+                        </button>
+                    </h3>
+                    <div id="content2" role="region" hidden>
+                        <p>Содержимое второго аккордеона. Это содержимое скрыто до нажатия.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Управление вкладками
+        class AccessibleTabs {
+            constructor(container) {
+                this.container = document.querySelector(container);
+                this.tabs = this.container.querySelectorAll('[role="tab"]');
+                this.panels = this.container.querySelectorAll('[role="tabpanel"]');
+                
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                this.tabs.forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        this.switchTab(e.target);
+                    });
+                    
+                    tab.addEventListener('keydown', (e) => {
+                        this.handleTabKeydown(e);
+                    });
+                });
+            }
+            
+            switchTab(clickedTab) {
+                // Снятие выделения с текущей вкладки
+                this.tabs.forEach(tab => {
+                    tab.setAttribute('aria-selected', 'false');
+                    tab.setAttribute('tabindex', '-1');
+                });
+                
+                this.panels.forEach(panel => {
+                    panel.hidden = true;
+                });
+                
+                // Установка выделения на новую вкладку
+                clickedTab.setAttribute('aria-selected', 'true');
+                clickedTab.setAttribute('tabindex', '0');
+                clickedTab.focus();
+                
+                // Показ соответствующей панели
+                const panelId = clickedTab.getAttribute('aria-controls');
+                document.getElementById(panelId).hidden = false;
+            }
+            
+            handleTabKeydown(event) {
+                const tab = event.target;
+                
+                switch(event.key) {
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        this.focusNextTab(tab);
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        this.focusPrevTab(tab);
+                        break;
+                    case 'Home':
+                        event.preventDefault();
+                        this.tabs[0].focus();
+                        break;
+                    case 'End':
+                        event.preventDefault();
+                        this.tabs[this.tabs.length - 1].focus();
+                        break;
+                    case 'Enter':
+                    case ' ':
+                        event.preventDefault();
+                        this.switchTab(tab);
+                        break;
+                }
+            }
+            
+            focusNextTab(currentTab) {
+                const currentIndex = Array.from(this.tabs).indexOf(currentTab);
+                const nextIndex = (currentIndex + 1) % this.tabs.length;
+                this.tabs[nextIndex].focus();
+            }
+            
+            focusPrevTab(currentTab) {
+                const currentIndex = Array.from(this.tabs).indexOf(currentTab);
+                const prevIndex = currentIndex === 0 ? this.tabs.length - 1 : currentIndex - 1;
+                this.tabs[prevIndex].focus();
+            }
+        }
+        
+        // Управление раскрывающимся меню
+        class AccessibleDropdown {
+            constructor(toggleId, menuId) {
+                this.toggle = document.getElementById(toggleId);
+                this.menu = document.getElementById(menuId);
+                this.items = this.menu.querySelectorAll('[role="menuitem"]');
+                
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                this.toggle.addEventListener('click', () => {
+                    this.toggleMenu();
+                });
+                
+                this.toggle.addEventListener('keydown', (e) => {
+                    this.handleToggleKeydown(e);
+                });
+                
+                this.items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        this.selectItem(item);
+                    });
+                    
+                    item.addEventListener('keydown', (e) => {
+                        this.handleItemKeydown(e);
+                    });
+                });
+                
+                // Закрытие меню при клике вне его
+                document.addEventListener('click', (e) => {
+                    if (!this.toggle.contains(e.target) && !this.menu.contains(e.target)) {
+                        this.closeMenu();
+                    }
+                });
+            }
+            
+            toggleMenu() {
+                const isExpanded = this.toggle.getAttribute('aria-expanded') === 'true';
+                
+                this.toggle.setAttribute('aria-expanded', !isExpanded);
+                this.menu.hidden = isExpanded;
+                
+                if (!isExpanded) {
+                    this.items[0].focus();
+                }
+            }
+            
+            closeMenu() {
+                this.toggle.setAttribute('aria-expanded', 'false');
+                this.menu.hidden = true;
+            }
+            
+            selectItem(item) {
+                const link = item.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            }
+            
+            handleToggleKeydown(event) {
+                switch(event.key) {
+                    case 'Enter':
+                    case ' ':
+                    case 'ArrowDown':
+                        event.preventDefault();
+                        this.openMenu();
+                        break;
+                    case 'ArrowUp':
+                        event.preventDefault();
+                        this.closeMenu();
+                        break;
+                    case 'Escape':
+                        this.closeMenu();
+                        this.toggle.focus();
+                        break;
+                }
+            }
+            
+            handleItemKeydown(event) {
+                const item = event.target;
+                
+                switch(event.key) {
+                    case 'ArrowDown':
+                        event.preventDefault();
+                        this.focusNextItem(item);
+                        break;
+                    case 'ArrowUp':
+                        event.preventDefault();
+                        this.focusPrevItem(item);
+                        break;
+                    case 'Enter':
+                    case ' ':
+                        event.preventDefault();
+                        this.selectItem(item);
+                        break;
+                    case 'Escape':
+                        this.closeMenu();
+                        this.toggle.focus();
+                        break;
+                    case 'Home':
+                        event.preventDefault();
+                        this.items[0].focus();
+                        break;
+                    case 'End':
+                        event.preventDefault();
+                        this.items[this.items.length - 1].focus();
+                        break;
+                }
+            }
+            
+            openMenu() {
+                this.toggle.setAttribute('aria-expanded', 'true');
+                this.menu.hidden = false;
+                this.items[0].focus();
+            }
+            
+            focusNextItem(currentItem) {
+                const currentIndex = Array.from(this.items).indexOf(currentItem);
+                const nextIndex = (currentIndex + 1) % this.items.length;
+                this.items[nextIndex].focus();
+            }
+            
+            focusPrevItem(currentItem) {
+                const currentIndex = Array.from(this.items).indexOf(currentItem);
+                const prevIndex = currentIndex === 0 ? this.items.length - 1 : currentIndex - 1;
+                this.items[prevIndex].focus();
+            }
+        }
+        
+        // Управление аккордеоном
+        function toggleAccordion(contentId, button) {
+            const content = document.getElementById(contentId);
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            button.setAttribute('aria-expanded', !isExpanded);
+            content.hidden = isExpanded;
+        }
+        
+        // Инициализация компонентов
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessibleTabs('.tabs-container');
+            new AccessibleDropdown('dropdown-toggle', 'dropdown-menu');
+        });
+    </script>
+    
+    <style>
+        .interactive-components {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .component-demo {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        [role="tab"] {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+        
+        [role="tab"][aria-selected="true"] {
+            background: white;
+            border-bottom: 1px solid white;
+            margin-bottom: -1px;
+        }
+        
+        [role="tab"]:focus {
+            outline: 2px solid #007acc;
+            outline-offset: -2px;
+        }
+        
+        [role="tabpanel"] {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        
+        #dropdown-toggle {
+            padding: 10px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #dropdown-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+        }
+        
+        [role="menuitem"] {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        [role="menuitem"]:hover, [role="menuitem"]:focus {
+            background-color: #f8f9fa;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .accordion-item button {
+            width: 100%;
+            padding: 15px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .accordion-item button:focus {
+            outline: 2px solid #007acc;
+        }
+        
+        #content1, #content2 {
+            padding: 15px;
+        }
+    </style>
+</body>
+</html>
+```
+
+## Проверка и тестирование безопасности
+
+### Инструменты для проверки безопасности:
+1. **axe-core** - автоматизированное тестирование доступности
+2. **WAVE** - веб-инструмент для оценки доступности
+3. **Lighthouse** - встроенная проверка доступности в Chrome DevTools
+4. **Accessibility Insights** - расширение для браузеров
+5. **Chrome DevTools Accessibility Inspector** - проверка дерева доступности
+6. **NVDA** - скринридер для Windows
+7. **VoiceOver** - скринридер для macOS
+8. **JAWS** - скринридер для Windows
+9. **Android TalkBack** - скринридер для Android
+10. **iOS VoiceOver** - скринридер для iOS
+
+### Проверка доступности:
+1. Проверка структуры документа
+2. Проверка использования семантических элементов
+3. Проверка ARIA атрибутов
+4. Проверка клавиатурной навигации
+5. Проверка контрастности цветов
+6. Проверка альтернативного текста
+7. Проверка управления фокусом
+8. Проверка живых регионов (ARIA live regions)
+9. Проверка описаний и помощи
+10. Проверка совместимости с вспомогательными технологиями
+
+### Проверка на реальных пользователях:
+1. Тестирование с использованием скринридеров
+2. Тестирование клавиатурной навигации
+3. Тестирование с увеличением экрана
+4. Тестирование с цветовыми ограничениями
+5. Тестирование на различных устройствах
+6. Тестирование с различными настройками браузера
+
+## Лучшие практики безопасности HTML
+
+### 1. Санитизация пользовательского ввода
+```html
+<script>
+class InputSanitizer {
+    static sanitizeHTML(input) {
+        if (typeof input !== 'string') return input;
+        
+        // Экранирование HTML
+        return input
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#x27;')
+            .replace(/\//g, '&#x2F;')
+            .trim();
+    }
+    
+    static sanitizeURL(url) {
+        try {
+            // Проверяем URL на безопасность
+            const parsedUrl = new URL(url, window.location.origin);
+            
+            // Разрешаем только безопасные протоколы
+            if (!['http:', 'https:', 'mailto:', 'tel:'].includes(parsedUrl.protocol)) {
+                throw new Error('Неподдерживаемый протокол');
+            }
+            
+            return parsedUrl.href;
+        } catch (error) {
+            console.warn('Небезопасный URL:', url);
+            return '#';
+        }
+    }
+    
+    static sanitizeScriptContent(content) {
+        // Проверка на опасные паттерны
+        const dangerousPatterns = [
+            /<script/i,
+            /javascript:/i,
+            /on\w+\s*=/i,
+            /eval\(/i,
+            /setTimeout\([^)]*['"]/i,
+            /setInterval\([^)]*['"]/i,
+            /Function\(/i
+        ];
+        
+        if (dangerousPatterns.some(pattern => pattern.test(content))) {
+            throw new Error('Обнаружен потенциально опасный контент');
+        }
+        
+        return content;
+    }
+}
+</script>
+```
+
+### 2. Правильное использование атрибутов безопасности
+```html
+<!-- Правильно: безопасное использование атрибутов -->
+<form action="/submit" method="post" target="_self">
+    <input type="hidden" name="csrf_token" value="SECURE_CSRF_TOKEN">
+    <input type="text" name="data" required>
+    <button type="submit">Отправить</button>
+</form>
+
+<!-- Безопасные ссылки -->
+<a href="https://trusted-site.com" 
+   rel="noopener noreferrer" 
+   target="_blank">Доверенный сайт</a>
+
+<!-- Безопасные iframe -->
+<iframe src="https://trusted-video.com" 
+        sandbox="allow-scripts allow-same-origin allow-popups"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+```
+
+### 3. Защита от clickjacking
+```html
+<!-- Защита через CSP -->
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
+
+<!-- Альтернативный способ через X-Frame-Options -->
+<meta http-equiv="X-Frame-Options" content="DENY">
+```
+
+### 4. Использование безопасных протоколов
+```html
+<!-- Всегда используйте HTTPS для важных данных -->
+<form action="https://secure.example.com/api/submit" method="post">
+    <input type="text" name="sensitive-data">
+    <button type="submit">Отправить</button>
+</form>
+```
+
+### 5. Subresource Integrity для внешних ресурсов
+```html
+<!-- Защита внешних ресурсов с SRI -->
+<script src="https://cdn.example.com/library.js"
+        integrity="sha384-..."
+        crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+      href="https://fonts.example.com/font.css"
+      integrity="sha384-..."
+      crossorigin="anonymous">
+```
+
+## Заключение
+
+Доступность HTML-страниц - это комплексный подход, который включает в себя правильное использование семантических элементов, ARIA-атрибутов, управление фокусом, клавиатурную навигацию и другие техники. Создание доступных веб-сайтов и приложений позволяет использовать их всем пользователям, включая тех, кто использует вспомогательные технологии.
+
+Ключевые аспекты доступности HTML:
+1. Использование семантических элементов
+2. Правильная структура документа
+3. ARIA атрибуты для дополнительной информации
+4. Управление фокусом и клавиатурной навигацией
+5. Альтернативный текст для изображений
+6. Доступные формы с понятными метками
+7. Контрастность цветов
+8. Совместимость с вспомогательными технологиями
+9. Следование стандартам WCAG
+10. Регулярное тестирование доступности
+11. Использование современных возможностей безопасности
+12. Поддержка когнитивной доступности
+13. Моторная доступность
+14. Сенсорная доступность
+15. Уважение пользовательских предпочтений (prefers-reduced-motion, prefers-color-scheme)
+
+Эти практики обеспечивают создание веб-сайтов, которые доступны для всех пользователей, независимо от их возможностей или используемых технологий.
+
+Современные подходы к доступности включают:
+- Использование Content Security Policy для предотвращения XSS
+- Proper labeling and semantic markup
+- Keyboard navigation and focus management
+- ARIA roles, states, and properties
+- Screen reader compatibility
+- High contrast and color accessibility
+- Reduced motion preferences
+- Modern web component patterns with accessibility in mind
+- Testing with automated tools and manual verification
+- Following WCAG guidelines and standards
+- Cognitive accessibility considerations
+- Motor accessibility enhancements
+- Sensory accessibility features
+- Respecting user preferences and settings
+- Using modern CSS for better accessibility
+- Progressive enhancement principles
+
+Эти методы позволяют создавать действительно доступные веб-приложения, которые обеспечивают равный доступ к информации и функциям для всех пользователей, включая людей с различными типами ограниченных возможностей.
+
+Ключевые принципы доступности:
+1. Perceivable - информация должна быть доступна для восприятия всеми пользователями
+2. Operable - интерфейс должен быть удобен в использовании
+3. Understandable - информация и интерфейс должны быть понятны
+4. Robust - контент должен быть надежным и совместимым с вспомогательными технологиями
+5. Inclusive design - проектирование с учетом всех пользователей
+6. Universal design - создание решений, подходящих для всех
+7. Respect for user preferences - уважение к настройкам пользователя
+8. Progressive enhancement - постепенное улучшение функциональности
+9. Graceful degradation - корректная работа при отсутствии возможностей
+10. Consistent navigation - последовательная навигация по всему сайту
+
+Эти принципы помогают создавать веб-приложения, которые работают для всех пользователей и обеспечивают инклюзивный опыт.
+
+## Следующие темы
+- [[HTML/Безопасность]]
+- [[HTML/Производительность]]
+- [[HTML/Совместимость]]
+
+## Теги
+#html #accessibility #a11y #web-development #frontend #wcag #aria #screen-readers #keyboard-navigation #focus-management #semantic-markup #inclusive-design #universal-design #best-practices #accessibility-testing #accessibility-insights #axe-core #wave #lighthouse #user-experience #cognitive-accessibility #motor-accessibility #visual-accessibility #auditory-accessibility #html5 #web-standards #web-components #javascript #dom-manipulation #input-sanitization #content-security-policy #subresource-integrity #modern-web #accessibility-api #web-api-integration

@@ -1,0 +1,416 @@
+# HTML SEO: Метатеги и заголовки
+
+Метатеги и заголовки играют ключевую роль в SEO оптимизации веб-страниц. Они предоставляют поисковым системам информацию о содержимом страницы и влияют на кликабельность в результатах поиска.
+
+## Заголовок страницы (`<title>`)
+
+Заголовок страницы - один из самых важных элементов для SEO. Он отображается в результатах поиска и на вкладке браузера.
+
+### Оптимизация заголовка
+
+```html
+<!-- Хороший пример заголовка -->
+<title>HTML SEO: Оптимизация метатегов и заголовков - Руководство 2023</title>
+
+<!-- Плохой пример заголовка -->
+<title>Страница</title>
+<title>Untitled Document</title>
+```
+
+### Рекомендации по заголовку
+
+1. **Длина**: 50-60 символов (до 600 пикселей в ширину)
+2. **Уникальность**: уникальный для каждой страницы
+3. **Ключевые слова**: размещение важных ключевых слов в начале
+4. **Брендинг**: добавление названия сайта (обычно в конце)
+
+```html
+<!-- Примеры хороших заголовков -->
+<title>HTML формы: Полное руководство для начинающих | Веб-разработка Гид</title>
+<title>CSS Flexbox: Справочник по свойствам | Frontend Masters</title>
+<title>JavaScript ES6: Новые возможности и примеры | Code Academy</title>
+```
+
+## Метатеги для SEO
+
+### Основные метатеги
+
+```html
+<head>
+    <!-- Основные метатеги -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO метатеги -->
+    <title>HTML SEO: Метатеги и заголовки</title>
+    <meta name="description" content="Полное руководство по оптимизации метатегов HTML для улучшения SEO. Узнайте, как правильно использовать title, description и другие важные метатеги.">
+    
+    <!-- Ключевые слова (устаревший, но иногда используется) -->
+    <meta name="keywords" content="HTML, SEO, метатеги, заголовки, оптимизация, поисковые системы">
+    
+    <!-- Автор -->
+    <meta name="author" content="Иван Иванов">
+    
+    <!-- Индексация -->
+    <meta name="robots" content="index, follow">
+</head>
+```
+
+### Метатег description
+
+Мета-описание кратко описывает содержимое страницы и часто используется в сниппетах поисковых систем.
+
+```html
+<!-- Хорошее описание -->
+<meta name="description" content="Полное руководство по SEO оптимизации HTML страниц. Узнайте, как правильно использовать метатеги, заголовки и структурированные данные для улучшения видимости в поисковых системах.">
+
+<!-- Плохое описание -->
+<meta name="description" content="Это страница о чем-то.">
+```
+
+#### Рекомендации по описанию:
+- Длина 150-160 символов
+- Уникальное для каждой страницы
+- Включает ключевые слова
+- Призывает к действию
+- Аккуратно и информативно
+
+### Метатег robots
+
+Управляет индексацией страницы поисковыми системами:
+
+```html
+<!-- Индексировать и следовать по ссылкам -->
+<meta name="robots" content="index, follow">
+
+<!-- Не индексировать, но следовать по ссылкам -->
+<meta name="robots" content="noindex, follow">
+
+<!-- Индексировать, но не следовать по ссылкам -->
+<meta name="robots" content="index, nofollow">
+
+<!-- Не индексировать и не следовать по ссылкам -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Не индексировать URL с параметрами -->
+<meta name="robots" content="noindex">
+```
+
+## Структура заголовков HTML
+
+### Иерархия заголовков
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Структура заголовков для SEO</title>
+    <meta name="description" content="Как правильно использовать заголовки HTML для SEO оптимизации">
+</head>
+<body>
+    <header>
+        <h1>Название сайта</h1>
+    </header>
+
+    <main>
+        <!-- Основной заголовок страницы -->
+        <h1>HTML SEO: Структура заголовков</h1>
+        
+        <!-- Подзаголовки основного содержимого -->
+        <section>
+            <h2>Введение в SEO заголовки</h2>
+            <p>Заголовки помогают поисковым системам понимать структуру содержимого...</p>
+            
+            <h3>Типы заголовков</h3>
+            <p>Существует несколько уровней заголовков от h1 до h6...</p>
+            
+            <h4>Заголовки четвертого уровня</h4>
+            <p>Используются для более детальной структуризации...</p>
+        </section>
+        
+        <section>
+            <h2>Лучшие практики</h2>
+            <p>Вот несколько рекомендаций по использованию заголовков...</p>
+            
+            <h3>Использование ключевых слов</h3>
+            <p>Ключевые слова в заголовках помогают улучшить ранжирование...</p>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Рекомендации по заголовкам
+
+1. **Только один `<h1>` на странице** - основной заголовок
+2. **Логическая иерархия** - не пропускайте уровни (h1 → h2 → h3)
+3. **Ключевые слова** - включайте релевантные ключевые слова
+4. **Краткость** - заголовки должны быть информативными, но не слишком длинными
+5. **Уникальность** - каждый заголовок должен быть уникальным в контексте страницы
+
+```html
+<!-- Правильная иерархия -->
+<h1>Основной заголовок страницы</h1>
+<h2>Первый раздел</h2>
+<h3>Подраздел первого раздела</h3>
+<h4>Еще более детализированный подраздел</h4>
+<h2>Второй раздел</h2>
+<h3>Подраздел второго раздела</h3>
+
+<!-- НЕПРАВИЛЬНО - пропущен h2 -->
+<h1>Основной заголовок</h1>
+<h3>Подраздел</h3>  <!-- Пропущен h2 -->
+```
+
+## Open Graph метатеги
+
+Open Graph метатеги управляют тем, как содержимое отображается при публикации в социальных сетях.
+
+```html
+<head>
+    <!-- Основные Open Graph теги -->
+    <meta property="og:title" content="HTML SEO: Метатеги и заголовки">
+    <meta property="og:description" content="Полное руководство по SEO оптимизации HTML страниц">
+    <meta property="og:image" content="https://example.com/seo-image.jpg">
+    <meta property="og:url" content="https://example.com/html-seo-metatags">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Веб-разработка Гид">
+    
+    <!-- Twitter Card теги -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTML SEO: Метатеги и заголовки">
+    <meta name="twitter:description" content="Полное руководство по SEO оптимизации HTML страниц">
+    <meta name="twitter:image" content="https://example.com/seo-image.jpg">
+    <meta name="twitter:site" content="@webdevguide">
+</head>
+```
+
+### Рекомендации для Open Graph
+
+1. **Изображение**: 1200x630 пикселей (соотношение 1.91:1)
+2. **Заголовок**: до 60 символов
+3. **Описание**: до 200 символов
+4. **Тип контента**: указывайте правильный тип (article, website, product и т.д.)
+
+## Альтернативные заголовки
+
+### Использование `<hgroup>` (редко используется)
+
+```html
+<!-- Группировка связанных заголовков -->
+<hgroup>
+    <h1>HTML и CSS: Полное руководство</h1>
+    <h2>Для начинающих веб-разработчиков</h2>
+</hgroup>
+```
+
+### Вложенные заголовки с семантическими элементами
+
+```html
+<article>
+    <header>
+        <h1>Заголовок статьи</h1>
+        <p>Автор: Иван Иванов | Опубликовано: <time datetime="2023-03-15">15 марта 2023</time></p>
+    </header>
+    
+    <section>
+        <h2>Введение</h2>
+        <p>Вступительный текст статьи...</p>
+    </section>
+    
+    <section>
+        <h2>Основная часть</h2>
+        <p>Основное содержимое статьи...</p>
+        
+        <section>
+            <h3>Подраздел основной части</h3>
+            <p>Детализированное содержимое...</p>
+        </section>
+    </section>
+    
+    <footer>
+        <p>Метки: <span>HTML</span>, <span>SEO</span>, <span>оптимизация</span></p>
+    </footer>
+</article>
+```
+
+## Динамические заголовки
+
+### JavaScript для обновления заголовков
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Динамические заголовки</title>
+    <meta name="description" content="Пример динамического обновления заголовков">
+</head>
+<body>
+    <h1 id="main-title">Текущее время: <span id="time"></span></h1>
+    
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ru-RU');
+            document.getElementById('time').textContent = timeString;
+            
+            // Обновление заголовка вкладки
+            document.title = `Текущее время: ${timeString} - Динамическая страница`;
+        }
+        
+        // Обновление каждую секунду
+        setInterval(updateTime, 1000);
+        updateTime(); // Первое обновление
+    </script>
+</body>
+</html>
+```
+
+## Пример SEO-оптимизированной страницы
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Основные SEO теги -->
+    <title>HTML SEO: Полное руководство по метатегам и заголовкам 2023</title>
+    <meta name="description" content="Полное руководство по SEO оптимизации HTML страниц. Узнайте, как правильно использовать метатеги, заголовки и структурированные данные для улучшения видимости в поисковых системах в 2023 году.">
+    
+    <!-- Канонический URL -->
+    <link rel="canonical" href="https://example.com/html-seo-metatags">
+    
+    <!-- Open Graph теги -->
+    <meta property="og:title" content="HTML SEO: Полное руководство по метатегам и заголовкам 2023">
+    <meta property="og:description" content="Полное руководство по SEO оптимизации HTML страниц в 2023 году">
+    <meta property="og:image" content="https://example.com/images/seo-guide.jpg">
+    <meta property="og:url" content="https://example.com/html-seo-metatags">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Веб-разработка Гид">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTML SEO: Полное руководство по метатегам и заголовкам 2023">
+    <meta name="twitter:description" content="Полное руководство по SEO оптимизации HTML страниц в 2023 году">
+    <meta name="twitter:image" content="https://example.com/images/seo-guide.jpg">
+    
+    <!-- Дополнительные теги -->
+    <meta name="keywords" content="HTML, SEO, метатеги, заголовки, оптимизация, поисковые системы, 2023">
+    <meta name="author" content="Иван Иванов">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Веб-разработка Гид</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/html" aria-current="page">HTML</a></li>
+                <li><a href="/css">CSS</a></li>
+                <li><a href="/javascript">JavaScript</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header>
+                <h1>HTML SEO: Полное руководство по метатегам и заголовкам</h1>
+                <p>Опубликовано: <time datetime="2023-03-15">15 марта 2023</time></p>
+                <p>Автор: Иван Иванов</p>
+            </header>
+            
+            <section>
+                <h2>Введение в HTML SEO</h2>
+                <p>SEO оптимизация HTML страниц является важной частью...</p>
+            </section>
+            
+            <section>
+                <h2>Основные метатеги для SEO</h2>
+                <p>При оптимизации HTML для поисковых систем важно...</p>
+                
+                <h3>Метатег title</h3>
+                <p>Заголовок страницы - один из самых важных элементов...</p>
+                
+                <h3>Метатег description</h3>
+                <p>Мета-описание кратко описывает содержимое страницы...</p>
+                
+                <h3>Метатег viewport</h3>
+                <p>Важен для адаптивности и мобильного SEO...</p>
+            </section>
+            
+            <section>
+                <h2>Структура заголовков</h2>
+                <p>Правильная иерархия заголовков помогает поисковым системам...</p>
+            </section>
+        </article>
+    </main>
+
+    <aside>
+        <h2>Популярные статьи</h2>
+        <ul>
+            <li><a href="/css-seo">CSS и SEO: Влияние на ранжирование</a></li>
+            <li><a href="/javascript-seo">JavaScript и SEO: Современные подходы</a></li>
+            <li><a href="/image-seo">Оптимизация изображений для SEO</a></li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>&copy; 2023 Веб-разработка Гид. Все права защищены.</p>
+        <nav>
+            <ul>
+                <li><a href="/privacy">Политика конфиденциальности</a></li>
+                <li><a href="/terms">Условия использования</a></li>
+                <li><a href="/sitemap">Карта сайта</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
+```
+
+## Проверка метатегов и заголовков
+
+### Инструменты для проверки
+
+1. **Google Search Console** - для проверки индексации
+2. **Google Rich Results Test** - для проверки структурированных данных
+3. **Facebook Sharing Debugger** - для проверки Open Graph тегов
+4. **Twitter Card Validator** - для проверки Twitter Card тегов
+5. **W3C Markup Validator** - для проверки валидности HTML
+
+### Проверка через браузер
+
+```javascript
+// Проверка основных SEO элементов
+console.log('Title:', document.title);
+console.log('Description:', document.querySelector('meta[name="description"]').content);
+console.log('Viewport:', document.querySelector('meta[name="viewport"]').content);
+console.log('Canonical:', document.querySelector('link[rel="canonical"]')?.href);
+console.log('OG Title:', document.querySelector('meta[property="og:title"]')?.content);
+console.log('Twitter Card:', document.querySelector('meta[name="twitter:card"]')?.content);
+```
+
+## Заключение
+
+Правильное использование метатегов и заголовков критически важно для SEO. Они помогают поисковым системам понимать содержимое страницы и влияют на кликабельность в результатах поиска. Ключевые моменты:
+
+1. **Заголовок страницы** должен быть информативным, уникальным и содержать ключевые слова
+2. **Мета-описание** должно кратко описывать содержимое и призывать к действию
+3. **Иерархия заголовков** должна быть логичной и последовательной
+4. **Open Graph теги** важны для социальных сетей
+5. **Все метатеги** должны быть уникальными для каждой страницы
+
+## Следующие темы
+- [[HTML/SEO/Структура страницы]]
+- [[HTML/SEO/Структурированные данные]]
+- [[HTML/SEO/Основы]]
+
+## Теги
+#html #seo #metatags #headings #title #description #web-development #frontend #optimization
