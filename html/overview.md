@@ -11,15 +11,25 @@ HTML состоит из элементов, которые представле
 Это руководство разделено на несколько разделов, каждый из которых охватывает важные аспекты HTML:
 
 - [[basics/basics|HTML/Основы]] - Основные понятия, структура документа, теги и атрибуты
+- [[attributes|HTML/Атрибуты]] - Типы атрибутов и их использование
 - [[elements/elements|HTML/Элементы]] - Различные типы HTML элементов и их использование
 - [[forms/forms|HTML/Формы]] - Создание и обработка HTML форм
+- [[forms/input-types|HTML/Типы полей ввода]] - Различные типы input элементов и их использование
+- [[semantic-html|HTML/Семантический HTML]] - Семантическая разметка и её важность
 - [[semantics/semantics|HTML/Семантика]] - Семантическая разметка и её важность
 - [[multimedia/multimedia|HTML/Мультимедиа]] - Работа с изображениями, аудио и видео
 - [[accessibility/accessibility|HTML/Доступность]] - Создание доступных веб-страниц
+- [[testing-accessibility|HTML/Тестирование доступности]] - Методы и инструменты тестирования доступности
+- [[aria-roles|HTML/ARIA-роли]] - Роли ARIA для улучшения доступности
 - [[seo/seo|HTML/SEO]] - Оптимизация HTML для поисковых систем
+- [[structured-data|HTML/Структурированные данные]] - Структурированные данные и их роль в SEO
 - [[validation/validation|HTML/Валидация]] - Проверка и стандарты HTML
-- [[advanced/advanced|HTML/Продвинутые темы]] - Современные возможности HTML
+- [[css-styling|HTML/CSS-стилизация]] - Интеграция HTML с CSS для стилизации
 - [[integration/integration|HTML/Интеграция с CSS и JavaScript]] - Взаимодействие с другими технологиями
+- [[integration/html-css-integration|HTML/CSS-интеграция]] - Интеграция HTML с CSS
+- [[integration/html-css-accessibility|HTML/CSS-доступность]] - Интеграция HTML с CSS для обеспечения доступности
+- [[best-practices|HTML/Лучшие практики]] - Рекомендации по написанию качественного HTML-кода
+- [[advanced/advanced|HTML/Продвинутые темы]] - Современные возможности HTML
 
 ## Теги
 #html #web-development #frontend #basics #structure #markup-language

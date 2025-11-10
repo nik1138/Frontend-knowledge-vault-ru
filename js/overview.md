@@ -22,7 +22,7 @@ JavaScript предоставляет возможность:
 
 Это руководство разделено на несколько разделов, каждый из которых охватывает важные аспекты JavaScript:
 
-- [[js/fundamentals/overview|JS/Основы JavaScript]] - Обзор основных концепций
+- [[js/fundamentals/fundamentals|JS/Основы JavaScript]] - Обзор основных концепций
 - [[js/fundamentals/variables|JS/Основы/Переменные]] - Основы работы с переменными
 - [[js/fundamentals/data_types|JS/Основы/Типы данных]] - Типы данных в JavaScript
 - [[js/fundamentals/operators|JS/Основы/Операторы]] - Арифметические, логические и другие операторы
@@ -32,17 +32,17 @@ JavaScript предоставляет возможность:
 - [[js/fundamentals/arrays_basics|JS/Основы/Массивы]] - Основы работы с массивами
 - [[js/fundamentals/scope_and_closures|JS/Основы/Область видимости и замыкания]] - Область видимости и замыкания
 - [[js/fundamentals/practical_exercises|JS/Основы/Практические упражнения]] - Упражнения для закрепления знаний
-- [[js/es6+/overview|JS/ES6+]] - Современные возможности JavaScript (ES2015 и выше)
-- [[js/async/overview|JS/Асинхронность]] - Promise, async/await, обработка асинхронных операций
-- [[js/dom/overview|JS/DOM]] - Работа с DOM, события, манипуляции
-- [[js/patterns/overview|JS/Шаблоны]] - Паттерны проектирования и архитектурные решения
-- [[js/performance/overview|JS/Производительность]] - Оптимизация производительности
-- [[js/testing/overview|JS/Тестирование]] - Модульное тестирование, инструменты
-- [[js/security/overview|JS/Безопасность]] - Безопасность в JavaScript приложениях
+- [[js/es6+/modern-js|JS/ES6+]] - Современные возможности JavaScript (ES2015 и выше)
+- [[js/async/async-programming|JS/Асинхронность]] - Promise, async/await, обработка асинхронных операций
+- [[js/dom/dom-manipulation|JS/DOM]] - Работа с DOM, события, манипуляции
+- [[js/patterns/design-patterns|JS/Шаблоны]] - Паттерны проектирования и архитектурные решения
+- [[js/performance/performance-api|JS/Производительность]] - Оптимизация производительности
+- [[js/testing/testing-overview|JS/Тестирование]] - Модульное тестирование, инструменты
+- [[js/security/security-overview|JS/Безопасность]] - Безопасность в JavaScript приложениях
 - [[js/debugging/overview|JS/Отладка]] - Техники и инструменты отладки
-- [[js/tooling/overview|JS/Инструментарий]] - Инструменты сборки и разработки
+- [[js/tooling/tooling-overview|JS/Инструментарий]] - Инструменты сборки и разработки
 - [[js/frameworks/overview|JS/Фреймворки]] - Обзор фреймворков и библиотек
-- [[js/ecosystem/overview|JS/Экосистема]] - Экосистема и сообщество JavaScript
+- [[js/ecosystem/ecosystem-overview|JS/Экосистема]] - Экосистема и сообщество JavaScript
 
 ### Продвинутые темы
 
