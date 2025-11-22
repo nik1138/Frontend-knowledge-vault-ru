@@ -885,4 +885,4 @@ const createUntypedHOF = (transformer: Function) =>
 - [[ts/functional-programming/currying|Каррирование]] - Преобразование функций с несколькими аргументами
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
-- [[ts/testing/index|Тестирование]] - Тестирование функций высшего порядка
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функций высшего порядка

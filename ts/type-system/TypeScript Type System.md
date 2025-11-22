@@ -886,7 +886,7 @@ type Path = Join<['users', 'profile', 'settings'], '/'>; // "users/profile/setti
 - [[../types/index]] - базовая система типов
 - [[../generics/index]] - обобщенное программирование
 - [[Advanced TypeScript Types]] - продвинутые возможности типа
-- [[../interfaces-classes/index]] - объектно-ориентированная типизация
-- [[../functional-programming/index]] - функциональная типизация
-- [[../modules/index]] - типизация модулей
+- [[Интерфейсы и классы в TypeScript]] - объектно-ориентированная типизация
+- [[Функциональное программирование в TypeScript]] - функциональная типизация
+- [[Модули в TypeScript]] - типизация модулей
 - [[../ecosystem/tools]] - инструменты для работы с типами

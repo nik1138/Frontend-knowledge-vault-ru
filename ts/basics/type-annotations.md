@@ -314,7 +314,7 @@ function setupClickHandler(element: HTMLElement, handler: (event: MouseEvent) =>
 
 - [[type-system/type-inference|Вывод типов]] - как TypeScript автоматически определяет типы без аннотаций
 - [[types/type-aliases-comprehensive|Псевдонимы типов]] - для создания пользовательских типов
-- [[generics/index|Обобщения]] - для создания гибких аннотаций типов
+- [[ts/generics/index|Обобщения]] - для создания гибких аннотаций типов
 - [[interfaces-classes/interfaces|Интерфейсы]] - для определения структур объектов
 
 ## Лучшие практики

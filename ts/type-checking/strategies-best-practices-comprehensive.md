@@ -782,6 +782,6 @@ type ReadOnlyUser = Readonly<FullUser>;
 
 - [[ts/type-system/type-compatibility|Совместимость типов]] - как проверяется совместимость типов
 - [[ts/advanced-types/conditional-types|Условные типы]] - продвинутые паттерны типизации
-- [[ts/utility-types/index|Утилиты типов]] - встроенные и пользовательские утилиты
+- [[Утилиты типов TypeScript|Утилиты типов]] - встроенные и пользовательские утилиты
 - [[ts/type-system/type-inference|Вывод типов]] - как TypeScript автоматически определяет типы
 - [[architecture/component-architecture]] - архитектурные аспекты типизации

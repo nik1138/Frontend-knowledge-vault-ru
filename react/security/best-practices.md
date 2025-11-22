@@ -353,7 +353,7 @@ function ErrorHandler({ error }) {
 Для полного понимания безопасности в React рекомендуется ознакомиться с:
 
 - [[react/state-management]] - безопасное управление состоянием
-- [[react/forms]] - безопасная обработка форм
+- [[Типизация форм в React с TypeScript]] - безопасная обработка форм
 - [[react/routing]] - безопасные маршруты
 - [[react/api-integration]] - безопасная интеграция с API
 - [[react/testing]] - тестирование безопасности

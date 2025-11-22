@@ -621,13 +621,13 @@ class MutableMonad<T> {
 - [[ts/functional-programming/functors-monads/common-monads|Распространенные монады]] - Изучение популярных монад
 - [[ts/functional-programming/higher-order-functions|Функции высшего порядка]] - Функции, принимающие или возвращающие другие функции
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
-- [[ts/error-handling/index|Обработка ошибок]] - Обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование монад
 
 ## Следующие шаги
 
 - [[ts/functional-programming/functors-monads/common-monads|Распространенные монады]] - Изучение популярных монад
 - [[ts/functional-programming/functors-monads/practical-examples|Практические примеры]] - Реальные примеры использования
-- [[ts/error-handling/index|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование монад
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация монад

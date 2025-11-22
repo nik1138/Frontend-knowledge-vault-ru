@@ -1089,6 +1089,6 @@ type AsyncResult<T, E = Error> =
 
 - [[ts/advanced-types/conditional-types|Условные типы]] - основа для многих продвинутых паттернов
 - [[ts/advanced-types/mapped-types|Сопоставленные типы]] - для преобразования типов
-- [[ts/utility-types/index|Утилиты типов]] - для создания производных типов
+- [[Утилиты типов TypeScript|Утилиты типов]] - для создания производных типов
 - [[ts/type-system/type-inference|Вывод типов]] - как TypeScript определяет типы в паттернах
 - [[ts/generics/TS Generics|Обобщения]] - основа для универсальных паттернов

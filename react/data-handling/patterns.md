@@ -14,7 +14,7 @@ tags: [react, data-handling, patterns, best-practices]
 Клиентское управление данными включает в себя хранение и управление состоянием приложения на стороне клиента. Основные подходы:
 
 - `useState` и `useReducer` для локального состояния компонентов
-- [[react/context]] для передачи данных между компонентами без пропсов
+- [[Типизация контекста в React с TypeScript]] для передачи данных между компонентами без пропсов
 - Внешние библиотеки: [[react/state-management]] (Redux, Zustand, Jotai)
 
 ### Пример использования useState
@@ -458,8 +458,8 @@ function UserProfile({ userId }) {
 - [[react/performance]]
 - [[react/error-boundaries]]
 - [[react/state-management]]
-- [[react/hooks]]
-- [[react/context]]
+- [[Типизация хуков React в TypeScript]]
+- [[Типизация контекста в React с TypeScript]]
 - [[react-query]]
 - [[swr]]
 

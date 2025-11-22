@@ -983,6 +983,6 @@ describe('Integrated Patterns', () => {
 - [[TypeScript Type System]] - как типы влияют на паттерны
 - [[../generics/index]] - обобщения в паттернах
 - [[Advanced TypeScript Types]] - продвинутые типы для паттернов
-- [[../modules/index]] - организация паттернов в модули
+- [[Модули в TypeScript]] - организация паттернов в модули
 - [[../ecosystem/architecture]] - архитектурные подходы
-- [[../functional-programming/index]] - функциональные альтернативы ООП паттернам
+- [[Функциональное программирование в TypeScript]] - функциональные альтернативы ООП паттернам

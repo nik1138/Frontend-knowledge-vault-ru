@@ -495,7 +495,7 @@ const updateUserImpure = (user: User, newName: string): User => {
 - [[ts/functional-programming/pure-functions/deterministic-functions|Детерминированные функции]] - Первое свойство чистых функций
 - [[ts/functional-programming/immutability|Неизменяемость]] - Работа с неизменяемыми структурами данных
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
-- [[ts/testing/index|Тестирование]] - Тестирование функций без побочных эффектов
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функций без побочных эффектов
 
 ## Следующие шаги
 

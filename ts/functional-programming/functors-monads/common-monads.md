@@ -946,14 +946,14 @@ const chooseMonadExample = () => {
 - [[ts/functional-programming/functors-monads/functors|Функторы]] - Базовая концепция функторов
 - [[ts/functional-programming/functors-monads/monads|Монады]] - Подробное изучение монад
 - [[ts/functional-programming/functors-monads/practical-examples|Практические примеры]] - Реальные примеры использования
-- [[ts/error-handling/index|Обработка ошибок]] - Обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование монад
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация монад
 
 ## Следующие шаги
 
 - [[ts/functional-programming/functors-monads/practical-examples|Практические примеры]] - Реальные примеры использования
-- [[ts/error-handling/index|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование монад
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация монад
 - [[ts/functional-programming/Функциональное_программирование|Функциональное программирование]] - Обзор всех концепций функционального программирования

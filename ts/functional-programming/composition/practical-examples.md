@@ -696,13 +696,13 @@ const App: React.FC = () => (
 - [[ts/functional-programming/composition/data-flow|Поток данных]] - Управление потоком данных через композицию
 - [[ts/functional-programming/higher-order-functions|Функции высшего порядка]] - Функции, принимающие или возвращающие другие функции
 - [[ts/functional-programming/currying|Каррирование]] - Техника создания функций с одним аргументом
-- [[ts/react/components|React компоненты]] - Использование композиции в React
-- [[ts/testing/index|Тестирование]] - Тестирование композиции функций
+- [[Типизация компонентов React в TypeScript|React компоненты]] - Использование композиции в React
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование композиции функций
 
 ## Следующие шаги
 
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация композиции функций
-- [[ts/testing/index|Тестирование]] - Тестирование композиции функций
-- [[ts/error-handling/index|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
-- [[ts/react/React_с_TypeScript|TypeScript с React]] - Использование функциональных концепций в React
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование композиции функций
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
+- [[TypeScript с React|TypeScript с React]] - Использование функциональных концепций в React

@@ -358,4 +358,4 @@ processValue(literalValue);  // OK: "hello" совместим с string
 - [[ts/advanced-types/discriminated-unions|Дискриминированные объединения]] - часто используют строковые литералы как дискриминанты
 - [[ts/type-system/keyof-operator|Оператор keyof]] - возвращает литеральные типы ключей
 - [[ts/advanced-types/conditional-types|Условные типы]] - могут использовать литеральные типы в условиях
-- [[ts/utility-types/index|Утилиты типов]] - многие утилиты работают с литеральными типами
+- [[Утилиты типов TypeScript|Утилиты типов]] - многие утилиты работают с литеральными типами

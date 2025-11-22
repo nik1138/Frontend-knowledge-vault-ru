@@ -373,4 +373,4 @@ type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
 - [[ts/type-system/type-inference|Вывод типов]] - основа для использования infer
 - [[ts/generics/TS Generics|Обобщения]] - условные типы часто параметризованы
 - [[ts/advanced-types/discriminated-unions|Дискриминированные объединения]] - продвинутые паттерны с условными типами
-- [[ts/utility-types/index|Утилиты типов]] - многие утилиты реализованы через условные типы
+- [[Утилиты типов TypeScript|Утилиты типов]] - многие утилиты реализованы через условные типы

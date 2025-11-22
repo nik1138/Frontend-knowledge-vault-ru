@@ -847,5 +847,5 @@ const processUser = pipe(
 - [[ts/type-system/type-inference|Вывод типов]] - как TypeScript помогает с типизацией функций
 - [[ts/generics/TS Generics|Обобщения]] - основа для универсальных функциональных утилит
 - [[ts/advanced-types/conditional-types|Условные типы]] - для сложных функциональных преобразований
-- [[ts/utility-types/index|Утилиты типов]] - для работы с функциональными паттернами
+- [[Утилиты типов TypeScript|Утилиты типов]] - для работы с функциональными паттернами
 - [[js/functional-programming]] - основы функционального программирования в JavaScript

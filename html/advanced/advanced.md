@@ -286,7 +286,7 @@ if ('serviceWorker' in navigator) {
 
 ## Связи с другими файлами
 
-- [[html/basics/basics]] — основы HTML
+- [[Основы HTML]] — основы HTML
 - [[css/advanced/advanced]] — продвинутые возможности CSS
 - [[js/advanced/advanced]] — продвинутый JavaScript
 - [[architecture/component-architecture/components]] — архитектура компонентов

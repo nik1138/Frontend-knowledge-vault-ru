@@ -665,7 +665,7 @@ tsc --watch --explainFiles
 ## Связи с другими концепциями
 
 - [[ts/configuration/Конфигурация|Конфигурация TypeScript]] - Основы конфигурации
-- [[ts/configuration/basic-setup|Базовая настройка]] - Начальная конфигурация
+- [[Базовая настройка TypeScript|Базовая настройка]] - Начальная конфигурация
 - [[ts/configuration/compiler-options|Опции компилятора]] - Подробное описание всех опций
 - [[ts/configuration/build-modes|Режимы сборки]] - Инкрементальная и композитная сборка
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Общие принципы оптимизации

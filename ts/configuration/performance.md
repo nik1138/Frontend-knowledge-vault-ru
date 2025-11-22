@@ -641,7 +641,7 @@ measureBuildTime();
 
 ## Следующие шаги
 
-- [[ts/react/React_с_TypeScript|TypeScript с React]] - Типобезопасная разработка React-приложений
+- [[TypeScript с React|TypeScript с React]] - Типобезопасная разработка React-приложений
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Общие принципы оптимизации
 - [[ts/architecture/monorepo|Монорепозитории]] - Архитектура монорепозиториев
-- [[ts/testing/index|Тестирование TypeScript]] - Тестирование приложений
+- [[Тестирование в TypeScript|Тестирование TypeScript]] - Тестирование приложений

@@ -485,13 +485,13 @@ events.forEach(event => {
 - [[ts/functional-programming/currying/implementation|Реализация каррирования]] - Различные способы реализации каррирования
 - [[ts/functional-programming/currying/partial-application|Частичное применение]] - Использование частично примененных функций
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
-- [[ts/react/components|React компоненты]] - Использование каррирования в React
-- [[ts/testing/index|Тестирование]] - Тестирование каррированных функций
+- [[Типизация компонентов React в TypeScript|React компоненты]] - Использование каррирования в React
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование каррированных функций
 
 ## Следующие шаги
 
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация каррированных функций
-- [[ts/testing/index|Тестирование]] - Тестирование каррированных функций
-- [[ts/react/React_с_TypeScript|TypeScript с React]] - Использование функциональных концепций в React
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование каррированных функций
+- [[TypeScript с React|TypeScript с React]] - Использование функциональных концепций в React

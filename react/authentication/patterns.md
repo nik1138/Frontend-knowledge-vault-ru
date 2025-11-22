@@ -653,7 +653,7 @@ test('перенаправляет неаутентифицированного 
 ## Связи с другими файлами
 
 - [[react/security]] - Безопасность в React-приложениях
-- [[react/context]] - Использование React Context
+- [[Типизация контекста в React с TypeScript]] - Использование React Context
 - [[react/routing]] - Маршрутизация в React
 - [[react/testing]] - Тестирование React-компонентов
 - [[authentication/best-practices]] - Лучшие практики аутентификации

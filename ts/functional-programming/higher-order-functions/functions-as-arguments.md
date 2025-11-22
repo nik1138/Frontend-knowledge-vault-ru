@@ -610,7 +610,7 @@ class TimingProcessor extends LoggingProcessor {
 - [[ts/functional-programming/currying|Каррирование]] - Преобразование функций с несколькими аргументами
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
 - [[ts/functional-programming/pure-functions|Чистые функции]] - Работа с чистыми функций
-- [[ts/testing/index|Тестирование]] - Тестирование функций высшего порядка
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функций высшего порядка
 
 ## Следующие шаги
 

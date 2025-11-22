@@ -392,4 +392,4 @@ type SpecialValue = Dictionary["special"];  // string
 - [[ts/advanced-types/mapped-types|Сопоставленные типы]] - часто используют индексные типы
 - [[ts/advanced-types/conditional-types|Условные типы]] - могут использовать индексные типы с infer
 - [[ts/generics/TS Generics|Обобщения]] - индексные типы часто параметризованы
-- [[ts/utility-types/index|Утилиты типов]] - многие утилиты используют индексные типы
+- [[Утилиты типов TypeScript|Утилиты типов]] - многие утилиты используют индексные типы

@@ -246,7 +246,7 @@ function useLocalStorage(key, initialValue) {
 Управление состоянием в React требует понимания различных подходов и инструментов. Выбор подходящей стратегии зависит от сложности приложения и требований к масштабируемости.
 
 > [!TIP]
-> Для изучения других аспектов React см. [[react/react-overview]]
+> Для изучения других аспектов React см. [[Обзор React]]
 
 > [!INFO]
 > Связанные темы: [[react/hooks/usestate]], [[react/hooks/useeffect]], [[react/context-api]], [[react/state/redux]], [[react/performance-optimization]]

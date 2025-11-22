@@ -12,9 +12,9 @@
 - [[js/fundamentals/data_types|Типы данных]] - Типы данных в JavaScript
 - [[js/fundamentals/operators|Операторы]] - Арифметические, логические и другие операторы
 - [[js/fundamentals/control_structures|Управляющие структуры]] - Условия и циклы
-- [[js/fundamentals/functions_basics|Функции]] - Основы работы с функциями
-- [[js/fundamentals/objects_basics|Объекты]] - Основы работы с объектами
-- [[js/fundamentals/arrays_basics|Массивы]] - Основы работы с массивами
+- [[Функции в JavaScript - Основы|Функции]] - Основы работы с функциями
+- [[Объекты в JavaScript - Основы|Объекты]] - Основы работы с объектами
+- [[Массивы в JavaScript - Основы|Массивы]] - Основы работы с массивами
 - [[js/fundamentals/scope_and_closures|Область видимости и замыкания]] - Область видимости и замыкания
 - [[js/fundamentals/practical_exercises|Практические упражнения]] - Упражнения для закрепления знаний
 
@@ -289,9 +289,9 @@ console.log(greet("Мария", "Здравствуйте")); // "Здравст
 - [[js/fundamentals/data_types|Типы данных]] - Глубокое погружение в типы данных
 - [[js/fundamentals/operators|Операторы]] - Полное руководство по операторам
 - [[js/fundamentals/control_structures|Управляющие структуры]] - Условия и циклы
-- [[js/fundamentals/functions_basics|Функции]] - Основы работы с функциями
-- [[js/fundamentals/objects_basics|Объекты]] - Работа с объектами
-- [[js/fundamentals/arrays_basics|Массивы]] - Работа с массивами
+- [[Функции в JavaScript - Основы|Функции]] - Основы работы с функциями
+- [[Объекты в JavaScript - Основы|Объекты]] - Работа с объектами
+- [[Массивы в JavaScript - Основы|Массивы]] - Работа с массивами
 - [[js/fundamentals/scope_and_closures|Область видимости и замыкания]] - Продвинутые концепции
 - [[js/fundamentals/practical_exercises|Практические упражнения]] - Упражнения для практики
 

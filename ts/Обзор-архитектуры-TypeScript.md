@@ -16,14 +16,14 @@ TypeScript - это не просто надстройка над JavaScript, а
   │                 │                                               │                          │                                                                            │                 │
   │ - Variables     │◄──────────────────────────────────────────────┤ - Structural Typing      │─────────────────────────────────────────────────────────────────────────────►│ - Build Tools   │
   │ - Functions     │                                               │ - Type Inference         │                                                                            │ - Package       │
-  │ - Objects       │                                               │ - Type Compatibility     │                                                                            │   Management    │
-  │ - Classes       │                                               │ - Type Guards            │                               ┌─────────────────────────────────────────────────┤ - Testing       │
-  │ - Modules       │                                               │ - Duck Typing            │                               │  Advanced Patterns & Utilities              │ │ - Frameworks    │
-  │ - Control Flow  │                                               │ - Conditional Types      │                               │                                           │ │ - Deployment    │
-  │ - Primitives    │                                               │ - Mapped Types           │                               │ - Functional Programming                  │ │ - Tools         │
-  └─────────────────┘                                               │ - Template Literals      │                               │ - Design Patterns                         │ └─────────────────┘
-        │                                                         │ - Utility Types          │                               │ - Pattern Relations                       │
-        │                                                         │ - Nominal Typing         │                               │ - Advanced Type Manipulation            │
+  │ - Objects       │                                               │ - Type Compatibility     │                               ┌─────────────────────────────────────────────────┤   Management    │
+  │ - Classes       │                                               │ - Type Guards            │                               │  Advanced Patterns & Utilities              │ │ - Testing       │
+  │ - Modules       │                                               │ - Duck Typing            │                               │                                           │ │ - Frameworks    │
+  │ - Control Flow  │                                               │ - Conditional Types      │                               │ - Functional Programming                  │ │ - Deployment    │
+  │ - Primitives    │                                               │ - Mapped Types           │                               │ - Design Patterns                         │ │ - Tools         │
+  └─────────────────┘                                               │ - Template Literals      │                               │ - Pattern Relations                       │ └─────────────────┘
+        │                                                         │ - Utility Types          │                               │ - Advanced Type Manipulation            │
+        │                                                         │ - Nominal Typing         │                               │                                           │
         │                                                         └─────────────────┬────────┘                               │                                           │
         │                                                                           │                                        └─────────────────────────────────────────────────┘
         │                                                         ┌─────────────────▼─────────────────┐
@@ -53,99 +53,99 @@ TypeScript - это не просто надстройка над JavaScript, а
 
 ## Структура знаний TypeScript
 
-### 1. [Базовые концепции](basics/index.md)
+### 1. Базовые концепции
 Фундаментальные элементы языка:
-- [[basics/type-annotations]] - аннотации типов
-- [[basics/variables]] - переменные и константы
-- [[basics/functions]] - функции и их типизация
-- [[basics/control-flow]] - поток управления и сужение типов
-- [[basics/arrays]] - массивы и их типизация
+- Аннотации типов
+- Переменные и константы
+- Функции и их типизация
+- Поток управления и сужение типов
+- Массивы и их типизация
 
-### 2. [Система типов](TypeScript%20Type%20System.md)
+### 2. Система типов
 Глубокое понимание типизации:
-- [[type-system/type-inference]] - вывод типов
-- [[../type-system/type-compatibility]] - совместимость типов
-- [[type-system/keyof-operator]] - оператор keyof
-- [[type-system/type-guards]] - уточнение типов
-- [[type-system/duck-typing]] - структурная типизация
-- [[type-system/indexed-access]] - доступ к типам по индексу
+- Вывод типов
+- Совместимость типов
+- Оператор keyof
+- Уточнение типов
+- Структурная типизация
+- Доступ к типам по индексу
 
-### 3. [Типы](Advanced%20TypeScript%20Types.md)
+### 3. Типы
 Все виды типов в TypeScript:
-- [[types/primitive-types]] - примитивные типы
-- [[types/object-types]] - объектные типы
-- [[types/literal-types]] - литеральные типы
-- [[types/union-types]] - объединения типов
-- [[types/intersection-types]] - пересечения типов
-- [[types/template-literal-types]] - шаблонные литеральные типы
-- [[types/special-types]] - специальные типы (any, unknown, never, void)
+- Примитивные типы
+- Объектные типы
+- Литеральные типы
+- Объединения типов
+- Пересечения типов
+- Шаблонные литеральные типы
+- Специальные типы (any, unknown, never, void)
 
-### 4. [Обобщения](generics/index.md)
+### 4. Обобщения
 Обработчики и шаблоны типов:
-- [[generics/basic]] - основы обобщений
-- [[generics/constraints]] - ограничения обобщений
-- [[generics/variance]] - ковариантность и контравариантность
-- [[generics/advanced]] - продвинутые паттерны обобщений
-- [[generics/utilities]] - утилиты обобщений
+- Основы обобщений
+- Ограничения обобщений
+- Ковариантность и контравариантность
+- Продвинутые паттерны обобщений
+- Утилиты обобщений
 
-### 5. [Интерфейсы и классы](interfaces-classes/index.md)
+### 5. Интерфейсы и классы
 Объектно-ориентированное программирование:
-- [[interfaces-classes/interfaces]] - интерфейсы и их применение
-- [[interfaces-classes/classes]] - классы и наследование
-- [[interfaces-classes/inheritance]] - наследование и композиция
-- [[interfaces-classes/access-modifiers]] - модификаторы доступа
-- [[interfaces-classes/abstract-classes]] - абстрактные классы
-- [[interfaces-classes/accessors]] - геттеры и сеттеры
+- Интерфейсы и их применение
+- Классы и наследование
+- Наследование и композиция
+- Модификаторы доступа
+- Абстрактные классы
+- Геттеры и сеттеры
 
-### 6. [Продвинутые типы](Advanced%20TypeScript%20Types.md)
+### 6. Продвинутые типы
 Сложные типы и манипуляции:
-- [[advanced-types/conditional-types]] - условные типы
-- [[advanced-types/mapped-types]] - сопоставляющие типы
-- [[advanced-types/discriminated-unions]] - дискриминированные объединения
-- [[advanced-types/template-literal-types]] - шаблонные литеральные типы
-- [[advanced-types/utility-types]] - встроенные утилиты типов
-- [[advanced-types/recursive-types]] - рекурсивные типы
+- Условные типы
+- Сопоставляющие типы
+- Дискриминированные объединения
+- Шаблонные литеральные типы
+- Встроенные утилиты типов
+- Рекурсивные типы
 
-### 7. [Функциональное программирование](functional-programming/index.md)
+### 7. Функциональное программирование
 Функциональные подходы:
-- [[functional-programming/fundamentals]] - основы функционального программирования
-- [[functional-programming/pure-functions]] - чистые функции
-- [[functional-programming/immutability]] - неизменяемость
-- [[functional-programming/composition]] - композиция функций
-- [[functional-programming/advanced-patterns]] - продвинутые функциональные паттерны
+- Основы функционального программирования
+- Чистые функции
+- Неизменяемость
+- Композиция функций
+- Продвинутые функциональные паттерны
 
-### 8. [Системы модулей](modules/index.md)
+### 8. Системы модулей
 Организация кода:
-- [[modules/module-systems]] - ES Modules, CommonJS, AMD
-- [[modules/import-export]] - синтаксис импорта/экспорта
-- [[modules/module-resolution]] - разрешение модулей
-- [[modules/bundling]] - упаковка модулей
-- [[modules/dynamic-imports]] - динамические импорты
+- ES Modules, CommonJS, AMD
+- Синтаксис импорта/экспорта
+- Разрешение модулей
+- Упаковка модулей
+- Динамические импорты
 
-### 9. [Паттерны проектирования](TypeScript%20Design%20Patterns%20Complete%20Guide.md)
+### 9. Паттерны проектирования
 Шаблоны проектирования:
-- [[patterns/creational]] - порождающие паттерны
-- [[patterns/structural]] - структурные паттерны
-- [[patterns/behavioral]] - поведенческие паттерны
-- [[patterns/architectural]] - архитектурные паттерны
-- [[patterns/functional]] - функциональные паттерны
-- [[patterns/relations]] - связи между паттернами
+- Порождающие паттерны
+- Структурные паттерны
+- Поведенческие паттерны
+- Архитектурные паттерны
+- Функциональные паттерны
+- Связи между паттернами
 
-### 10. [Совместимость](TypeScript%20Compatibility.md)
+### 10. Совместимость
 Совместимость между различными компонентами:
-- [[compatibility/type-compatibility]] - совместимость типов
-- [[compatibility/module-compatibility]] - совместимость модулей
-- [[compatibility/version-compatibility]] - совместимость версий
-- [[compatibility/runtime-compatibility]] - совместимость во время выполнения
-- [[compatibility/ecosystem-integration]] - интеграция с экосистемой
+- Совместимость типов
+- Совместимость модулей
+- Совместимость версий
+- Совместимость во время выполнения
+- Интеграция с экосистемой
 
-### 11. [Экосистема TypeScript](TS%20Ecosystem.md)
+### 11. Экосистема TypeScript
 Инструменты и интеграции:
-- [[ecosystem/build-tools]] - инструменты сборки
-- [[ecosystem/package-management]] - управление пакетами
-- [[ecosystem/testing]] - тестирование
-- [[ecosystem/frameworks]] - интеграция с фреймворками
-- [[ecosystem/deployment]] - деплой и развертывание
+- Инструменты сборки
+- Управление пакетами
+- Тестирование
+- Интеграция с фреймворками
+- Деплой и развертывание
 
 ## Подробные связи между концепциями
 
@@ -530,4 +530,242 @@ TypeScript - это не просто надстройка над JavaScript, а
 
 Интеграция всех концепций TypeScript позволяет создавать мощные, типобезопасные решения, которые проверяются на этапе компиляции и обеспечивают качественную автоматизацию и самодокументирование кода.
 
-#tags: #typescript #architecture #type-system #design-patterns #programming
+## Дополнительные архитектурные аспекты
+
+### 12. Типобезопасная архитектура приложений
+
+Построение архитектуры приложений с учетом типов позволяет избежать множества ошибок на этапе разработки:
+
+```typescript
+// Паттерн "DDD Aggregate" с типобезопасностью
+interface UserProps {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+}
+
+type UserRole = 'admin' | 'user' | 'guest';
+
+class User {
+  private readonly props: UserProps;
+
+  constructor(props: UserProps) {
+    this.validate(props);
+    this.props = props;
+  }
+
+  private validate(props: UserProps) {
+    if (!props.email.includes('@')) {
+      throw new Error('Invalid email');
+    }
+  }
+
+  changeEmail(newEmail: string): void {
+    if (!newEmail.includes('@')) {
+      throw new Error('Invalid email');
+    }
+    this.props.email = newEmail;
+  }
+
+  get email(): string {
+    return this.props.email;
+  }
+
+  get role(): UserRole {
+    return this.props.role;
+  }
+}
+
+// Использование tagged union для безопасной обработки состояний
+type Result<T, E = Error> =
+  | { success: true; value: T }
+  | { success: false; error: E };
+
+// Функция, гарантированно возвращающая Result
+function safeParse(json: string): Result<any> {
+  try {
+    const parsed = JSON.parse(json);
+    return { success: true, value: parsed };
+  } catch (error) {
+    return { success: false, error: error as Error };
+  }
+}
+```
+
+### 13. Типизированные конфигурации
+
+Использование строгой типизации для конфигурационных файлов:
+
+```typescript
+interface AppConfig {
+  server: {
+    port: number;
+    host: string;
+    ssl?: {
+      key: string;
+      cert: string;
+    };
+  };
+  database: {
+    url: string;
+    options: {
+      poolSize: number;
+      maxRetries: number;
+    };
+  };
+  features: {
+    [K: string]: boolean;
+  };
+}
+
+// Типобезопасное извлечение конфигурации
+const config: AppConfig = {
+  server: {
+    port: 3000,
+    host: 'localhost',
+  },
+  database: {
+    url: process.env.DATABASE_URL || 'localhost:5432/myapp',
+    options: {
+      poolSize: 10,
+      maxRetries: 3,
+    },
+  },
+  features: {
+    newUI: true,
+    analytics: false,
+  },
+};
+
+// Проверка конфигурации на этапе компиляции
+function validateConfig(config: AppConfig): boolean {
+  return config.server.port > 0 &&
+         config.server.port < 65536 &&
+         !!config.database.url;
+}
+```
+
+### 14. Архитектура для масштабируемых систем
+
+Принципы масштабирования с использованием типов:
+
+```typescript
+// Определение контрактов для сервисов
+interface ServiceContract {
+  name: string;
+  version: string;
+  endpoints: string[];
+}
+
+// Использование интерфейсов для взаимодействия между сервисами
+interface MessageQueue {
+  publish<T>(topic: string, message: T): Promise<void>;
+  subscribe<T>(topic: string, handler: (msg: T) => void): void;
+}
+
+// Типизированные события
+type UserEvent =
+  | { type: 'USER_CREATED'; payload: { id: string; email: string } }
+  | { type: 'USER_UPDATED'; payload: { id: string; updates: Partial<UserProps> } }
+  | { type: 'USER_DELETED'; payload: { id: string } };
+
+// Типобезопасный event bus
+class TypedEventBus {
+  private handlers: { [K in UserEvent['type']]?: Array<(event: Extract<UserEvent, { type: K }>) => void> } = {};
+
+  subscribe<T extends UserEvent['type']>(
+    eventType: T,
+    handler: (event: Extract<UserEvent, { type: T }>) => void
+  ) {
+    if (!this.handlers[eventType]) {
+      this.handlers[eventType] = [];
+    }
+    (this.handlers[eventType] as Array<any>).push(handler);
+  }
+
+  publish<T extends UserEvent>(event: T) {
+    const handlers = this.handlers[event.type];
+    if (handlers) {
+      handlers.forEach(handler => handler(event));
+    }
+  }
+}
+```
+
+### 15. Интеграция с внешними API
+
+Типобезопасная работа с внешними API:
+
+```typescript
+// Определение типов для API
+interface GitHubUser {
+  login: string;
+  id: number;
+  node_id: string;
+  avatar_url: string;
+  gravatar_id: string;
+  url: string;
+  html_url: string;
+  followers_url: string;
+  following_url: string;
+  // ... другие поля
+}
+
+// Типизированный клиент API
+class GitHubApiClient {
+  constructor(private baseUrl: string = 'https://api.github.com') {}
+
+  async getUser(username: string): Promise<GitHubUser> {
+    const response = await fetch(`${this.baseUrl}/users/${username}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch user: ${response.status}`);
+    }
+    return response.json() as Promise<GitHubUser>;
+  }
+
+  async searchUsers(query: string): Promise<{ items: GitHubUser[] }> {
+    const response = await fetch(`${this.baseUrl}/search/users?q=${query}`);
+    if (!response.ok) {
+      throw new Error(`Failed to search users: ${response.status}`);
+    }
+    return response.json() as Promise<{ items: GitHubUser[] }>;
+  }
+}
+
+// Использование клиент-серверного взаимодействия с типами
+const client = new GitHubApiClient();
+client.getUser('octocat')
+  .then(user => console.log(user.login)) // Типизированное обращение к полям
+  .catch(err => console.error(err.message));
+```
+
+## Практические рекомендации по архитектуре
+
+1. **Начинайте с доменной модели** - определите ключевые сущности и их связи
+2. **Используйте контракты** - определите интерфейсы для взаимодействия между слоями
+3. **Разделяйте ответственность** - каждая сущность должна иметь одну зону ответственности
+4. **Используйте типы для документирования** - типы могут служить формой документации
+5. **Придерживайтесь принципа LSP** - подтипы должны быть взаимозаменяемыми с базовыми типами
+6. **Создавайте типы с учетом изменений** - проектируйте типы с учетом будущих изменений
+7. **Тестируйте типы** - используйте dtslint или tsd для проверки типов
+8. **Используйте branded types для дополнительной безопасности**:
+
+```typescript
+// Branded типы для предотвращения путаницы
+type Brand<T, B> = T & { __brand: B };
+
+type Email = Brand<string, 'Email'>;
+type Password = Brand<string, 'Password'>;
+
+// Теперь невозможно перепутать email и password
+function createUser(email: Email, password: Password) {
+  // реализация
+}
+
+// createUser("wrong@order.com", "secret123"); // Ошибка компиляции
+// createUser("secret123", "wrong@order.com"); // Ошибка компиляции
+createUser("test@example.com" as Email, "secret123" as Password); // Правильно
+```
+
+#tags: #typescript #architecture #type-system #design-patterns #programming #advanced-types #functional-programming

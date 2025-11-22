@@ -1378,7 +1378,7 @@ test('should handle complex user data', () => {
 ## Связи с другими концепциями
 
 - [[ts/type-system/type-inference|Вывод типов]] - как типизация помогает в тестировании
-- [[ts/utility-types/index|Утилиты типов]] - для создания вспомогательных типов в тестах
+- [[Утилиты типов TypeScript|Утилиты типов]] - для создания вспомогательных типов в тестах
 - [[testing/unit-testing]] - основы unit тестирования
 - [[testing/integration-testing]] - интеграционное тестирование
 - [[react/testing]] - тестирование React компонентов

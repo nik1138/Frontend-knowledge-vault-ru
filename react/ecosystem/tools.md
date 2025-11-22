@@ -286,9 +286,9 @@ function App() {
 
 ## Связь с другими React-файлами
 
-- [[react/components]] - компонентный подход в React
+- [[Типизация компонентов React в TypeScript]] - компонентный подход в React
 - [[react/state-management]] - концепции управления состоянием
-- [[react/hooks]] - хуки и их применение
+- [[Типизация хуков React в TypeScript]] - хуки и их применение
 - [[react/performance]] - оптимизация производительности
 - [[react/testing]] - тестирование React-приложений
 - [[react/styling]] - стилизация компонентов

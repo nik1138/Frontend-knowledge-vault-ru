@@ -792,5 +792,5 @@ async function useAsyncQueue() {
 - [[js/promises]] - основы промисов, на которых основан async/await
 - [[ts/type-system/type-compatibility|Совместимость типов]] - как TypeScript проверяет асинхронные типы
 - [[ts/advanced-types/conditional-types|Условные типы]] - могут использоваться для извлечения типов из промисов
-- [[ts/utility-types/index|Утилиты типов]] - такие как Awaited для работы с типами промисов
+- [[Утилиты типов TypeScript|Утилиты типов]] - такие как Awaited для работы с типами промисов
 - [[architecture/api-integration]] - архитектурные аспекты асинхронных операций

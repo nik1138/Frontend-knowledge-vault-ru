@@ -661,5 +661,5 @@ const firstItemCorrect = items[0]; // string | number (корректный вы
 - [[../generics/index]] - вывод generic параметров
 - [[../advanced-types/conditional-types]] - условные типы и вывод
 - [[../advanced-types/mapped-types]] - сопоставляющие типы и вывод
-- [[../functional-programming/index]] - функциональные паттерны с выводом типов
-- [[../interfaces-classes/index]] - вывод в классах и интерфейсах
+- [[Функциональное программирование в TypeScript]] - функциональные паттерны с выводом типов
+- [[Интерфейсы и классы в TypeScript]] - вывод в классах и интерфейсах

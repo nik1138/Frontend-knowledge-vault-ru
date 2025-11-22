@@ -354,7 +354,7 @@ const processArraySafe = (multiplier: number, arr: number[]): number[] =>
 - [[ts/functional-programming/currying/implementation|Реализация каррирования]] - Различные способы реализации каррирования
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
 - [[ts/functional-programming/higher-order-functions|Функции высшего порядка]] - Функции, принимающие или возвращающие другие функции
-- [[ts/testing/index|Тестирование]] - Тестирование функций с частичным применением
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функций с частичным применением
 
 ## Следующие шаги
 
@@ -362,4 +362,4 @@ const processArraySafe = (multiplier: number, arr: number[]): number[] =>
 - [[ts/functional-programming/composition|Композиция функций]] - Объединение функций для создания новых функций
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация функций с частичным применением
-- [[ts/testing/index|Тестирование]] - Тестирование функций с частичным применением
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функций с частичным применением

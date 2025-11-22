@@ -1281,7 +1281,7 @@ export interface AppConfig {
 ## Связи с другими концепциями
 
 - [[ts/type-system/type-inference|Вывод типов]] - как документация помогает с типизацией
-- [[ts/utility-types/index|Утилиты типов]] - для создания вспомогательных типов
+- [[Утилиты типов TypeScript|Утилиты типов]] - для создания вспомогательных типов
 - [[architecture/documentation]] - общие принципы документирования
 - [[testing/documentation]] - документирование тестов
 - [[code-review/process]] - процессы код-ревью

@@ -867,7 +867,7 @@ const safeUrl = buildSafeUrl('https://api.example.com', '/users', {
 ```
 
 ## Ссылки на связанны темы
-- [[html/security/basics]] - Основы безопасности HTML
+- [[Безопасность HTML - основы защиты веб-приложений]] - Основы безопасности HTML
 - [[html/forms/security]] - Безопасность форм
 - [[security/best-practices]] - Лучшие практики безопасности
 - [[js/security]] - Безопасность JavaScript

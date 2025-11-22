@@ -214,7 +214,7 @@ const value: SomeType = { /* ... */ };
 
 ## Связь с другими концепциями
 
-- [[modules/index]] - модульная система TypeScript
+- [[TypeScript Module Systems]] - модульная система TypeScript
 - [[configuration/index]] - настройка TypeScript для работы с пакетами
 - [[tooling-workflows/index]] - инструменты и рабочие процессы
 - [[deployment/targets]] - деплой пакетов

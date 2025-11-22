@@ -356,7 +356,7 @@ function Parent({ items }) {
 
 - [[react/state]] - Управление состоянием компонента
 - [[react/lifecycle]] - Жизненный цикл компонентов
-- [[react/hooks]] - Хуки для функциональных компонентов
+- [[Типизация хуков React в TypeScript]] - Хуки для функциональных компонентов
 - [[react/component-architecture]] - Архитектура компонентов
 - [[react/events]] - Обработка событий
 - [[react/typescript]] - Использование TypeScript с React

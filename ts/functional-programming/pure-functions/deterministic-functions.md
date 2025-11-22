@@ -392,7 +392,7 @@ const updateUserImpure = (user: User, newName: string): User => {
 - [[ts/functional-programming/pure-functions/Чистые_функции|Чистые функции]] - Основная страница раздела
 - [[ts/functional-programming/immutability|Неизменяемость]] - Работа с неизменяемыми структурами данных
 - [[ts/functional-programming/higher-order-functions|Функции высшего порядка]] - Функции, принимающие или возвращающие другие функции
-- [[ts/testing/index|Тестирование]] - Тестирование детерминированных функций
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование детерминированных функций
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация детерминированных функций
 
 ## Следующие шаги

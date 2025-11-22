@@ -713,7 +713,7 @@ console.log(JSON.stringify(paths, null, 2));
 ## Связи с другими концепциями
 
 - [[ts/configuration/Конфигурация|Конфигурация TypeScript]] - Основы конфигурации
-- [[ts/configuration/basic-setup|Базовая настройка]] - Начальная конфигурация
+- [[Базовая настройка TypeScript|Базовая настройка]] - Начальная конфигурация
 - [[ts/configuration/compiler-options|Опции компилятора]] - Подробное описание всех опций
 - [[ts/advanced-modules/module-resolution|Разрешение модулей]] - Алгоритмы поиска модулей
 - [[ts/architecture/monorepo|Монорепозитории]] - Архитектура монорепозиториев

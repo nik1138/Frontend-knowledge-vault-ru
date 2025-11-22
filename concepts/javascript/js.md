@@ -15,4 +15,4 @@ JavaScript — это динамический язык программиров
 - [[Declarative Programming]] - JavaScript также поддерживает декларативный стиль
 
 ## Подробное изучение
-Для более подробного изучения JavaScript см. основной раздел в [[js/overview]], [[js/complete_guide]], [[js/summary]] и [[js/final_summary]].
+Для более подробного изучения JavaScript см. основной раздел в [[JavaScript - Полное руководство по изучению]], [[js/complete_guide]], [[JavaScript - Полное руководство по изучению (лишний?)]] и [[Финальная сводка - Структура JavaScript курса]].

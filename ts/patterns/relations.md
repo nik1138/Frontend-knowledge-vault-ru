@@ -884,7 +884,7 @@ const premiumOrderProcessor = createOrderProcessor(
 
 ## Связь с другими концепциями
 - [[../type-system/type-compatibility]] - совместимость типов при интеграции
-- [[../modules/index]] - модульная организация паттернов
+- [[Модули в TypeScript]] - модульная организация паттернов
 - [[../generics/advanced]] - обобщения для паттернов
-- [[../functional-programming/index]] - функциональные альтернативы ООП паттернам
+- [[Функциональное программирование в TypeScript]] - функциональные альтернативы ООП паттернам
 - [[Advanced TypeScript Types]] - продвинутые типы для паттернов

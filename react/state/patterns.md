@@ -53,7 +53,7 @@ function AppProvider({ children }) {
 }
 ```
 
-[[react/context]] [[react/hooks/usecontext]]
+[[Типизация контекста в React с TypeScript]] [[react/hooks/usecontext]]
 
 ## Поднятие состояния (Lifting State Up)
 
@@ -146,7 +146,7 @@ function Counter() {
 - Состояния, которое часто изменяется
 - Необходимости персистентности состояния
 
-[[react/context]] [[redux]] [[zustand]]
+[[Типизация контекста в React с TypeScript]] [[redux]] [[zustand]]
 
 ## Нормализация состояния
 
@@ -373,8 +373,8 @@ const { data, isLoading, error } = useQuery(['user', userId], fetchUser);
 
 ## Связанные темы
 
-- [[react/hooks]]
-- [[react/context]]
+- [[Типизация хуков React в TypeScript]]
+- [[Типизация контекста в React с TypeScript]]
 - [[react/performance]]
 - [[redux]]
 - [[zustand]]

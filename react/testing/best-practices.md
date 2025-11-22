@@ -301,9 +301,9 @@ TDD (Test Driven Development) - это практика, при которой �
 
 ## Связанные темы
 
-- [[react/components]]
-- [[react/hooks]]
-- [[react/context]]
+- [[Типизация компонентов React в TypeScript]]
+- [[Типизация хуков React в TypeScript]]
+- [[Типизация контекста в React с TypeScript]]
 - [[react/state-management]]
 - [[js/testing/jest]]
 - [[js/testing/react-testing-library]]

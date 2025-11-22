@@ -394,4 +394,4 @@ class TypedEventEmitter {
 - [[ts/advanced-types/mapped-types|Сопоставленные типы]] - база для многих паттернов с keyof
 - [[ts/type-system/type-inference|Вывод типов]] - keyof влияет на вывод типов
 - [[ts/generics/TS Generics|Обобщения]] - keyof часто используется в дженериках
-- [[ts/utility-types/index|Утилиты типов]] - многие утилиты используют keyof
+- [[Утилиты типов TypeScript|Утилиты типов]] - многие утилиты используют keyof

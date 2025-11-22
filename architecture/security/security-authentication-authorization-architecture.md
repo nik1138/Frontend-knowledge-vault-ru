@@ -1,0 +1,1064 @@
+---
+aliases: [Unified Security Architecture, Security Architecture, Security Patterns, Security Best Practices, Authentication and Authorization, Auth Architecture, Identity Management]
+tags: [security, architecture, authentication, authorization, jwt, oauth, session-management, frontend, backend, api, microservices]
+---
+
+# Единая архитектура безопасности, аутентификации и авторизации
+
+## Обзор
+
+Unified Security Architecture - это комплексный подход к обеспечению безопасности на всех уровнях приложения, от фронтенд-интерфейса до бэкенд-сервисов, включая микросервисы, API, базы данных и инфраструктуру. Архитектура безопасности включает набор принципов, паттернов, инструментов и процедур, которые обеспечивают защиту данных, целостность системы и конфиденциальность информации. В контексте фронтенд-приложений, архитектура безопасности особенно важна, так как фронтенд является первой линией обороны от атак.
+
+Архитектура аутентификации и авторизации (AuthN/AuthZ) представляет собой систему управления идентичностью пользователей и контролем доступа к ресурсам приложения. Эта архитектура обеспечивает безопасность приложений, проверяя личность пользователей и определяя, какие действия они могут выполнять.
+
+## Основные компоненты архитектуры безопасности
+
+### 1. Аутентификация и авторизация
+
+Аутентификация и авторизация - это критические компоненты безопасности. Аутентификация подтверждает личность пользователя, а авторизация определяет, какие действия пользователь может выполнять.
+
+#### JWT (JSON Web Tokens)
+
+JWT - это открытый стандарт (RFC 7519) для создания токенов доступа, которые содержат утверждения (claims) о пользователе.
+
+```javascript
+// jwt-service.js
+import jwt from 'jsonwebtoken';
+
+class JWTService {
+  constructor(secret) {
+    this.secret = secret;
+  }
+  
+  generateToken(payload, options = {}) {
+    const defaultOptions = {
+      expiresIn: '1h',
+      issuer: 'frontend-app',
+      audience: 'users'
+    };
+    
+    return jwt.sign(payload, this.secret, { ...defaultOptions, ...options });
+  }
+  
+  verifyToken(token) {
+    try {
+      return jwt.verify(token, this.secret);
+    } catch (error) {
+      throw new Error(`Token verification failed: ${error.message}`);
+    }
+  }
+}
+```
+
+#### OAuth 2.0
+
+OAuth 2.0 - это протокол авторизации, позволяющий сторонним приложениям получить ограниченный доступ к пользовательским аккаунтам на HTTP-сервисе.
+
+```javascript
+// oauth-service.js
+class OAuthService {
+  constructor(providerConfig) {
+    this.provider = providerConfig;
+  }
+  
+  async getAuthURL(scopes = ['read']) {
+    const params = new URLSearchParams({
+      client_id: this.provider.clientId,
+      redirect_uri: this.provider.redirectUri,
+      response_type: 'code',
+      scope: scopes.join(' '),
+      state: this.generateState()
+    });
+    
+    return `${this.provider.authUrl}?${params.toString()}`;
+  }
+  
+  async exchangeCodeForToken(code) {
+    const params = new URLSearchParams({
+      grant_type: 'authorization_code',
+      client_id: this.provider.clientId,
+      client_secret: this.provider.clientSecret,
+      redirect_uri: this.provider.redirectUri,
+      code
+    });
+    
+    const response = await fetch(this.provider.tokenUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: params
+    });
+    
+    if (!response.ok) {
+      throw new Error(`OAuth token exchange failed: ${response.statusText}`);
+    }
+    
+    return await response.json();
+  }
+}
+```
+
+#### Сравнение аутентификационных методов
+
+| Метод | Преимущества | Недостатки | Использование |
+|-------|--------------|------------|---------------|
+| JWT | Самодостаточность, масштабируемость | Невозможность отозвать до истечения | API, SPA |
+| OAuth 2.0 | Делегирование доступа, безопасность | Сложность реализации | Сторонние приложения |
+| Session | Простота отзыва, надежность | Требует серверного хранилища | Традиционные веб-сайты |
+
+#### Управление сессиями
+
+Система управления сессиями отслеживает состояние аутентифицированных пользователей:
+
+```javascript
+// session-management.js
+import session from 'express-session';
+import connectRedis from 'connect-redis';
+import Redis from 'redis';
+
+const RedisStore = connectRedis(session);
+const redisClient = Redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD
+});
+
+app.use(session({
+  store: new RedisStore({ client: redisClient }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+    httpOnly: true, // Prevent XSS
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    sameSite: 'strict' // CSRF protection
+  },
+  name: 'sessionId' // Custom cookie name
+}));
+```
+
+### 2. Система авторизации
+
+Система авторизации определяет, какие действия может выполнять аутентифицированный пользователь:
+
+#### Ролевая модель доступа (RBAC)
+
+```javascript
+// Пример RBAC системы
+class AuthorizationService {
+  constructor() {
+    this.rolePermissions = new Map([
+      ['admin', ['read', 'write', 'delete', 'manage_users']],
+      ['editor', ['read', 'write']],
+      ['viewer', ['read']]
+    ]);
+  }
+
+  hasPermission(user, resource, action) {
+    const userRoles = user.roles || [];
+    
+    for (const role of userRoles) {
+      const permissions = this.rolePermissions.get(role) || [];
+      if (permissions.includes(action)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+}
+```
+
+#### Проверка токенов JWT
+
+```java
+// Пример проверки JWT токенов в Java
+@Component
+public class JwtAuthenticationFilter implements Filter {
+
+    @Autowired
+    private JwtDecoder jwtDecoder;
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+            throws IOException, ServletException {
+        
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String authHeader = httpRequest.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            
+            try {
+                Jwt jwt = jwtDecoder.decode(token);
+                // Добавление информации о пользователе в контекст безопасности
+                SecurityContext context = SecurityContextHolder.createEmptyContext();
+                // Установка аутентификации...
+            } catch (JwtException e) {
+                // Обработка ошибки JWT
+            }
+        }
+        
+        chain.doFilter(request, response);
+    }
+}
+```
+
+### 3. Защита от атак
+
+#### XSS (Cross-Site Scripting)
+
+XSS-атаки происходят, когда злоумышленник вставляет вредоносный скрипт на веб-страницу, который затем выполняется в браузере других пользователей.
+
+```javascript
+// xss-protection.js
+class XSSProtection {
+  static sanitize(input) {
+    if (typeof input !== 'string') {
+      return input;
+    }
+    
+    return input
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;')
+      .replace(/\//g, '&#x2F;');
+  }
+  
+  static sanitizeHTML(html) {
+    // Использование библиотеки DOMPurify для очистки HTML
+    if (typeof DOMPurify !== 'undefined') {
+      return DOMPurify.sanitize(html);
+    }
+    
+    // Простая реализация очистки для бэкенд-кода
+    return html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  }
+}
+```
+
+#### CSRF (Cross-Site Request Forgery)
+
+CSRF-атаки заставляют пользователя выполнить нежелательные действия в приложении, в котором он уже аутентифицирован.
+
+```javascript
+// csrf-protection.js
+class CSRFProtection {
+  constructor() {
+    this.tokens = new Map();
+  }
+  
+  generateToken(userId) {
+    const token = crypto.randomBytes(32).toString('hex');
+    this.tokens.set(token, {
+      userId,
+      createdAt: Date.now(),
+      expiresAt: Date.now() + 3600000 // 1 hour
+    });
+    
+    return token;
+  }
+  
+  validateToken(token, userId) {
+    const storedToken = this.tokens.get(token);
+    
+    if (!storedToken) {
+      return false;
+    }
+    
+    if (storedToken.expiresAt < Date.now()) {
+      this.tokens.delete(token);
+      return false;
+    }
+    
+    return storedToken.userId === userId;
+  }
+}
+```
+
+#### SQL-инъекции
+
+Защита от SQL-инъекции важна особенно на бэкенд-стороне:
+
+```javascript
+// sql-injection-protection.js
+class SQLInjectionProtection {
+  static validateInput(input) {
+    // Проверка на потенциальные SQL-инъекции
+    const sqlPattern = /('|--|;|\/\*|\*\/|xp_|sp_|sysobjects|syscolumns)/gi;
+    
+    if (sqlPattern.test(input)) {
+      throw new Error('Potential SQL injection detected');
+    }
+    
+    return input;
+  }
+  
+  static sanitizeForSQL(value) {
+    if (typeof value !== 'string') return value;
+    
+    return value
+      .replace(/'/g, "''")  // Дублируем одинарные кавычки в PostgreSQL
+      .replace(/\\/g, "\\\\")  // Экранируем бэкслэши
+      .replace(/;/g, '');  // Удаляем точки с запятой
+  }
+  
+  // Использование подготовленных выражений
+  static prepareStatement(sql, params) {
+    // Пример с PostgreSQL
+    const pgp = require('pg-promise')();
+    
+    return pgp.any(sql, params); // pg-promise автоматически экранирует параметры
+  }
+}
+```
+
+### 4. Шифрование и безопасность данных
+
+#### Transport Layer Security (TLS)
+
+Использование HTTPS для защиты данных в передаче:
+
+```javascript
+// security-headers.js
+const securityHeaders = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Content-Security-Policy': `default-src 'self'; 
+                              script-src 'self' 'unsafe-inline' cdn.example.com;
+                              style-src 'self' 'unsafe-inline' fonts.googleapis.com;
+                              font-src 'self' fonts.googleapis.com fonts.gstatic.com;
+                              img-src 'self' data: https:;
+                              object-src 'none';
+                              base-uri 'self';
+                              form-action 'self'`,
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin'
+};
+
+app.use((req, res, next) => {
+  Object.entries(securityHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+  next();
+});
+```
+
+#### Шифрование данных
+
+```javascript
+// encryption-service.js
+import crypto from 'crypto';
+
+class EncryptionService {
+  constructor(secretKey) {
+    this.algorithm = 'aes-256-gcm';
+    this.key = crypto.scryptSync(secretKey, 'salt', 32);
+  }
+  
+  encrypt(text) {
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipher(this.algorithm, this.key);
+    cipher.setAAD(Buffer.from('frontend-app'));
+    
+    let encrypted = cipher.update(text, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    
+    const authTag = cipher.getAuthTag().toString('hex');
+    
+    return {
+      encrypted,
+      iv: iv.toString('hex'),
+      authTag
+    };
+  }
+  
+  decrypt(encryptedData) {
+    const decipher = crypto.createDecipher(this.algorithm, this.key);
+    decipher.setAAD(Buffer.from('frontend-app'));
+    decipher.setAuthTag(Buffer.from(encryptedData.authTag, 'hex'));
+    
+    let decrypted = decipher.update(encryptedData.encrypted, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    
+    return decrypted;
+  }
+}
+```
+
+## Безопасность в микросервисах
+
+### Service Mesh Security
+
+Сервисные сетки (Service Meshes) обеспечивают безопасность на уровне инфраструктуры:
+
+```yaml
+# istio-security.yaml
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: frontend-service-policy
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: frontend-service
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/production/sa/backend-service-account"]
+    to:
+    - operation:
+        methods: ["GET", "POST"]
+        paths: ["/api/*"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: frontend-request-auth
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: frontend-service
+  jwtRules:
+  - issuer: "https://accounts.google.com"
+    jwksUri: "https://www.googleapis.com/oauth2/v3/certs"
+    forwardOriginalToken: true
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: frontend-destination-rule
+  namespace: production
+spec:
+  host: frontend-service
+  trafficPolicy:
+    connectionPool:
+      http:
+        http2MaxRequests: 1000
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveErrors: 7
+      interval: 30s
+      baseEjectionTime: 30s
+```
+
+### API Gateway Security
+
+API Gateway обеспечивает централизованную безопасность:
+
+```yaml
+# security/rate-limiting.yaml
+plugins:
+- name: rate-limiting
+  service: user-service
+  config:
+    hour: 10000
+    policy: redis
+    redis_host: redis-cluster
+    redis_port: 6379
+    redis_database: 0
+    redis_timeout: 2000
+
+- name: rate-limiting
+  service: order-service
+  config:
+    minute: 100
+    policy: local
+    fault_tolerant: true
+```
+
+## Безопасность фронтенд-приложений
+
+### Content Security Policy
+
+CSP помогает предотвратить XSS-атаки:
+
+```html
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' ajax.googleapis.com;
+  style-src 'self' 'unsafe-inline' fonts.googleapis.com;
+  img-src 'self' data: https:;
+  font-src 'self' fonts.googleapis.com;
+  connect-src 'self' api.example.com;
+  media-src 'self' media.example.com;
+  object-src 'none';
+  child-src 'self';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;
+">
+```
+
+### CORS настройки
+
+```javascript
+// cors-configuration.js
+import cors from 'cors';
+
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || [
+    'https://app.example.com',
+    'https://staging.example.com'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin'
+  ],
+  exposedHeaders: [
+    'Access-Control-Allow-Origin',
+    'X-Total-Count',
+    'X-Has-Next-Page'
+  ]
+};
+
+app.use(cors(corsOptions));
+```
+
+### Subresource Integrity
+
+Обеспечение целостности внешних ресурсов:
+
+```html
+<!-- Подключение библиотек с Subresource Integrity -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js" 
+  integrity="sha384-abcdefghijklmnopqrstuvwxyz123456"
+  crossorigin="anonymous">
+</script>
+
+<link 
+  rel="stylesheet" 
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" 
+  integrity="sha384-abcdefghijklmnopqrstuvwxyz123456"
+  crossorigin="anonymous">
+```
+
+## Мониторинг безопасности
+
+### Логирование безопасности
+
+```javascript
+// security-logging.js
+import winston from 'winston';
+
+const securityLogger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.splat(),
+    winston.format.json()
+  ),
+  defaultMeta: { service: 'security' },
+  transports: [
+    new winston.transports.File({ 
+      filename: 'logs/security.log',
+      level: 'warn',
+      maxsize: 5242880, // 5MB
+      maxFiles: 5
+    }),
+    new winston.transports.Console({
+      format: winston.format.simple()
+    })
+  ]
+});
+
+// Middleware для логирования безопасности
+function securityLoggingMiddleware(req, res, next) {
+  const start = Date.now();
+  
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    
+    if (res.statusCode >= 400) {
+      securityLogger.warn('Security event', {
+        method: req.method,
+        url: req.url,
+        statusCode: res.statusCode,
+        ip: req.ip,
+        userId: req.user?.id,
+        duration,
+        userAgent: req.get('User-Agent')
+      });
+    }
+  });
+  
+  next();
+}
+```
+
+### SIEM интеграция
+
+```javascript
+// siem-integration.js
+class SIEMIntegration {
+  constructor(config) {
+    this.config = config;
+    this.queue = [];
+  }
+  
+  logSecurityEvent(event) {
+    const enrichedEvent = {
+      ...event,
+      timestamp: new Date().toISOString(),
+      source: 'frontend-app',
+      severity: this.classifySeverity(event.type),
+      correlationId: this.getCorrelationId()
+    };
+    
+    this.queue.push(enrichedEvent);
+    
+    // Отправка порциями в SIEM систему
+    if (this.queue.length >= this.config.batchSize) {
+      this.sendToSIEM(this.queue.splice(0, this.config.batchSize));
+    }
+  }
+  
+  classifySeverity(type) {
+    const severityMap = {
+      'login_attempt': 'medium',
+      'suspicious_activity': 'high',
+      'data_access': 'low',
+      'data_modification': 'medium',
+      'unauthorized_access': 'high',
+      'account_lockout': 'medium',
+      'brute_force_detected': 'critical'
+    };
+    
+    return severityMap[type] || 'info';
+  }
+  
+  async sendToSIEM(events) {
+    try {
+      await fetch(this.config.endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.token}`
+        },
+        body: JSON.stringify(events)
+      });
+    } catch (error) {
+      console.error('Failed to send security events to SIEM:', error);
+      // В случае сбоя, можно сохранить события во временный файл для повторной отправки
+    }
+  }
+}
+```
+
+## Безопасность в CI/CD
+
+### Сканирование уязвимостей
+
+```yaml
+# .github/workflows/security-scan.yml
+name: Security Scanning
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run dependency vulnerability scan
+      run: |
+        npm audit --audit-level moderate
+        npm run security:deps
+        
+    - name: Run static code analysis
+      uses: github/codeql-action/analyze@v2
+    
+    - name: Run security scanning
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+```
+
+## Методы аутентификации
+
+### Многофакторная аутентификация (MFA)
+
+```javascript
+// mfa-service.js
+class MFAService {
+  constructor() {
+    this.totp = new TOTP();
+  }
+  
+  async generateSecret(userId) {
+    const secret = this.totp.generateSecret();
+    
+    // Сохранение секрета в безопасное хранилище
+    await this.storeSecret(userId, secret);
+    
+    // Генерация QR-кода для приложения аутентификации
+    const otpauthUrl = this.totp.keyuri(userId, secret);
+    return {
+      secret,
+      qrCodeUrl: `https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=${encodeURIComponent(otpauthUrl)}`
+    };
+  }
+  
+  async verifyTOTP(secret, token) {
+    return this.totp.verify({
+      secret,
+      token,
+      window: 2
+    });
+  }
+  
+  async authenticateWithMFA(userId, password, mfaToken) {
+    // Проверка основных учетных данных
+    const validCredentials = await this.validateCredentials(userId, password);
+    
+    if (!validCredentials) {
+      return { success: false, error: 'Invalid credentials' };
+    }
+    
+    // Проверка MFA токена
+    const secret = await this.getSecret(userId);
+    const validMFA = await this.verifyTOTP(secret, mfaToken);
+    
+    if (!validMFA) {
+      return { success: false, error: 'Invalid MFA token' };
+    }
+    
+    return { 
+      success: true, 
+      token: await this.generateJWT({ userId, mfaVerified: true }) 
+    };
+  }
+}
+```
+
+## Best Practices безопасности
+
+### Защита от DDoS
+
+```javascript
+// ddos-protection.js
+import rateLimit from 'express-rate-limit';
+
+// Ограничение частоты запросов
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    error: 'Too many requests from this IP, please try again later.'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Подробное ограничение для чувствительных маршрутов
+const sensitiveLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Только 5 попыток на чувствительные операции
+  message: {
+    error: 'Too many authentication attempts, account locked for 15 minutes.'
+  }
+});
+
+app.use('/api/', apiLimiter);
+app.use('/api/auth/signin', sensitiveLimiter);
+app.use('/api/auth/signup', sensitiveLimiter);
+```
+
+### Управление секретами
+
+```javascript
+// secrets-manager.js
+import dotenv from 'dotenv';
+import AWS from 'aws-sdk';
+
+class SecretsManager {
+  constructor() {
+    this.isAWS = process.env.USE_AWS_SECRETS === 'true';
+  }
+  
+  async getSecret(secretName) {
+    if (this.isAWS) {
+      const client = new AWS.SecretsManager({
+        region: process.env.AWS_REGION
+      });
+      
+      const data = await client.getSecretValue({ SecretId: secretName }).promise();
+      return JSON.parse(data.SecretString);
+    } else {
+      // Fallback к локальным переменным окружения
+      dotenv.config();
+      return process.env[secretName];
+    }
+  }
+  
+  async initializeSecrets() {
+    const secrets = await Promise.all([
+      this.getSecret('database-config'),
+      this.getSecret('jwt-secret'),
+      this.getSecret('third-party-apis')
+    ]);
+    
+    // Установка секретов в приложение
+    process.env.DATABASE_URL = secrets[0].url;
+    process.env.JWT_SECRET = secrets[1];
+    process.env.API_KEYS = secrets[2];
+    
+    return secrets;
+  }
+}
+```
+
+## Архитектурные паттерны
+
+### 1. API Gateway с аутентификацией
+
+API Gateway может обрабатывать аутентификацию на уровне шлюза:
+
+```yaml
+# Пример конфигурации аутентификации в API Gateway
+apiVersion: gateway.example.com/v1
+kind: APIGateway
+metadata:
+  name: auth-gateway
+spec:
+  routes:
+    - path: /api/**
+      authentication:
+        method: jwt
+        required: true
+      authorization:
+        roles: ["user", "admin"]
+```
+
+### 2. Многоуровневая аутентификация
+
+```javascript
+// Пример многоуровневой аутентификации
+class MultiFactorAuth {
+  async authenticate(username, password, secondFactor) {
+    // Проверка основных учетных данных
+    const user = await this.validateCredentials(username, password);
+    
+    if (!user) {
+      throw new Error('Invalid credentials');
+    }
+    
+    // Проверка второго фактора
+    const isValidSecondFactor = await this.validateSecondFactor(
+      user.id, 
+      secondFactor
+    );
+    
+    if (!isValidSecondFactor) {
+      throw new Error('Invalid second factor');
+    }
+    
+    // Генерация токена
+    return this.generateToken(user);
+  }
+}
+```
+
+## Безопасность архитектуры
+
+### Защита от атак
+
+- Хранение токенов в безопасном месте (например, в HttpOnly cookies)
+- Использование HTTPS для всех аутентификационных запросов
+- Ограничение времени жизни токенов
+- Правильная обработка ошибок аутентификации
+
+### Рекомендации по безопасности
+
+- Использование strong secrets для подписи токенов
+- Регулярная ротация секретов
+- Логирование попыток аутентификации
+- Мониторинг подозрительной активности
+
+## Тестирование архитектуры аутентификации
+
+### Модульное тестирование
+
+```javascript
+// Пример теста для JWT middleware
+describe('JwtAuthMiddleware', () => {
+  it('should authenticate valid token', () => {
+    const middleware = new JwtAuthMiddleware('test-secret');
+    const req = { headers: { authorization: 'Bearer valid-token' } };
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    const next = jest.fn();
+    
+    // Подделываем jwt.verify
+    jwt.verify = jest.fn().mockReturnValue({ userId: 1 });
+    
+    middleware.authenticate(req, res, next);
+    
+    expect(next).toHaveBeenCalled();
+    expect(req.user).toEqual({ userId: 1 });
+  });
+});
+```
+
+## Мониторинг и наблюдаемость
+
+### Метрики безопасности
+
+- Частота попыток аутентификации
+- Количество успешных/неудачных попыток
+- Время жизни сессий
+- Использование различных методов аутентификации
+
+## Заключение
+
+Unified Security Architecture обеспечивает всестороннюю защиту фронтенд-приложений на всех уровнях - от аутентификации и авторизации до мониторинга безопасности и защиты от атак. Эффективная архитектура безопасности требует комплексного подхода к защите данных, транзакций и пользовательской информации. Правильная реализация архитектуры безопасности является критически важной для обеспечения доверия пользователей и надежности приложения.
+
+Безопасность должна быть интегрирована в каждый аспект архитектуры фронтенд-приложения, включая API-интеграции, хранилища состояния, сетевые запросы и пользовательские сессии. Она не должна быть добавлена как посторонний элемент, а должна быть фундаментальной частью архитектурного решения.
+
+## Связанные концепции
+
+- [[../api/unified-api-integration-architecture]] - единая архитектура интеграций API
+- [[../observability/unified-observability-architecture]] - архитектура наблюдаемости
+- [[../microservices/unified-microservices-architecture]] - микросервисная архитектура
+- [[Container Orchestration]] - оркестрация контейнеров
+- [[Infrastructure as Code]] - инфраструктура как код
+- [[API Gateway]] - шлюз API
+- [[Rate Limiting]] - ограничение частоты запросов
+- [[JWT Implementation]] - реализация JWT
+- [[OAuth 2.0]] - протокол OAuth 2.0
+- [[Session Management]] - управление сессиями
+- [[CORS]] - политика CORS
+- [[Content Security Policy]] - политика безопасности контента
+- [[Authentication and Authorization]] - аутентификация и авторизация
+- [[Service Mesh]] - сервисная сетка
+- [[Security Testing]] - тестирование безопасности
+- [[Security Best Practices]] - лучшие практики безопасности
+- [[Monitoring and Observability]] - мониторинг и наблюдаемость
+- [[DevOps Practices]] - практики DevOps
+- [[CI/CD Pipeline]] - пайплайн CI/CD
+- [[Secrets Management]] - управление секретами
+- [[Secret Management]] - управление секретами
+- [[Identity Management]] - управление идентичностью
+- [[Authentication Architecture]] - архитектура аутентификации
+- [[Authorization Architecture]] - архитектура авторизации
+- [[Session Architecture]] - архитектура сессий
+- [[Token Architecture]] - архитектура токенов
+- [[CORS Architecture]] - архитектура CORS
+- [[Security Architecture]] - архитектура безопасности
+- [[Performance Architecture]] - архитектура производительности
+- [[Frontend Architecture]] - архитектура фронтенда
+- [[API Security]] - безопасность API
+- [[Load Balancing]] - балансировка нагрузки
+- [[Rate Limiting]] - ограничение частоты
+- [[Circuit Breaker]] - предохранитель
+- [[Error Handling Architecture]] - архитектура обработки ошибок
+- [[State Management Architecture]] - архитектура управления состоянием
+- [[Testing Architecture]] - архитектура тестирования
+- [[Documentation Architecture]] - архитектура документации
+- [[Configuration Management]] - управление конфигурацией
+- [[Feature Flags]] - фича-флаги
+- [[Release Management]] - управление релизами
+- [[Dependency Management]] - управление зависимостями
+- [[Code Review]] - код-ревью
+- [[Static Analysis]] - статический анализ
+- [[Quality Assurance]] - обеспечение качества
+- [[Performance Testing]] - тестирование производительности
+- [[Security Testing in CI]] - тестирование безопасности в CI
+- [[Infrastructure Security]] - безопасность инфраструктуры
+- [[Cloud Security]] - облачная безопасность
+- [[Network Security]] - сетевая безопасность
+- [[Application Security]] - безопасность приложений
+- [[Data Security]] - безопасность данных
+- [[Communication Security]] - безопасность коммуникаций
+- [[Transport Security]] - безопасность транспорта
+- [[Database Security]] - безопасность баз данных
+- [[Authentication Tokens]] - токены аутентификации
+- [[Authorization Tokens]] - токены авторизации
+- [[API Keys]] - API ключи
+- [[SSL/TLS]] - SSL/TLS шифрование
+- [[Encryption]] - шифрование
+- [[Hashing]] - хеширование
+- [[Digital Signatures]] - цифровые подписи
+- [[Certificate Management]] - управление сертификатами
+- [[PKI (Public Key Infrastructure)]] - инфраструктура открытых ключей
+- [[Firewall]] - брандмауэр
+- [[Intrusion Detection Systems]] - системы обнаружения вторжений
+- [[Intrusion Prevention Systems]] - системы предотвращения вторжений
+- [[Network Segmentation]] - сегментация сети
+- [[Zero Trust Architecture]] - архитектура нулевого доверия
+- [[RBAC]] - ролевая модель доступа
+- [[ABAC]] - атрибутно-ориентированная модель доступа
+- [[IAM]] - управление идентичностью и доступом
+- [[SSO]] - единый вход
+- [[SSO (Single Sign-On)]] - единый вход
+- [[MFA]] - многофакторная аутентификация
+- [[2FA]] - двухфакторная аутентификация
+- [[Biometric Authentication]] - биометрическая аутентификация
+- [[Password Policy]] - политика паролей
+- [[Account Lockout Policy]] - политика блокировки аккаунтов
+- [[Privilege Escalation]] - повышение привилегий
+- [[Principle of Least Privilege]] - принцип минимальных привилегий
+- [[Role-Based Access Control]] - ролевая модель доступа
+- [[Attribute-Based Access Control]] - атрибутно-ориентированная модель доступа
+- [[Access Control Lists]] - списки контроля доступа
+- [[Capability-Based Security]] - capability-based безопасность
+- [[Mandatory Access Control]] - принудительный контроль доступа
+- [[Discretionary Access Control]] - дискреционный контроль доступа
+- [[Rule-Based Access Control]] - rule-based контроль доступа
+- [[Disaster Recovery]] - восстановление после сбоев
+- [[Backup Strategies]] - стратегии резервного копирования
+- [[Recovery Plans]] - планы восстановления
+- [[Business Continuity]] - непрерывность бизнеса
+- [[Incident Response]] - реагирование на инциденты
+- [[Threat Modeling]] - моделирование угроз
+- [[Penetration Testing]] - пентестирование
+- [[Vulnerability Assessment]] - оценка уязвимостей
+- [[Security Auditing]] - аудит безопасности
+- [[Compliance]] - соответствие стандартам
+- [[GDPR]] - GDPR
+- [[HIPAA]] - HIPAA
+- [[PCI DSS]] - PCI DSS
+- [[SOC 2]] - SOC 2
+- [[ISO 27001]] - ISO 27001
+- [[OWASP Top 10]] - OWASP Top 10
+- [[CWE/SANS]] - CWE/SANS
+- [[SAST]] - статический анализ безопасности
+- [[DAST]] - динамический анализ безопасности
+- [[IAST]] - интерактивный анализ безопасности
+- [[RASP]] - адаптивная защита среды выполнения
+- [[Security Headers]] - заголовки безопасности
+- [[HTTP Security Headers]] - HTTP заголовки безопасности
+- [[Referrer Policy]] - политика реферера
+- [[Feature Policy]] - политика функций
+- [[Permissions Policy]] - политика разрешений
+
+## Теги
+
+#security #authentication #authorization #architecture #jwt #oauth #cors #security-headers #xss-protection #csrf-protection #sql-injection #security-patterns #security-best-practices #security-testing #penetration-testing #vulnerability-assessment #threat-modeling #zero-trust #identity-management #access-control #rbac #abac #iam #sso #mfa #encryption #tls #https #ssl #csp #subresource-integrity #security-auditing #security-compliance #owasp #gdpr #hipaa #pci-dss #security-devops #devsecops #security-ci-cd #security-monitoring #security-logging #siem #security-tools #security-frameworks #security-libraries #frontend-security #vue-security #react-security #angular-security #spa-security #mobile-security #api-gateway-security #microservices-security #container-security #kubernetes-security #infrastructure-security #tls-encryption #ssl-certificates #certificate-pinning #certificate-transparency #public-key-infrastructure #pki #digital-certificates #digital-signatures #asymmetric-cryptography #symmetric-cryptography #hashing #encryption #decryption #security-keys #hardware-security-modules #hsm #secret-management #secrets-management #vault #aws-secrets-manager #azure-key-vault #gcp-secrets-manager #security-automation #security-pipelines #security-scanning #static-analysis #dynamic-analysis #runtime-protection #behavioral-analysis #anomaly-detection #security-metrics #security-kpis #security-indicators #security-quality-gates #security-quality-metrics #security-quality-indicators #security-quality-controls #security-quality-assurance #security-quality-management #security-quality-standards #security-quality-rules #security-quality-guidelines #security-quality-best-practices #security-team-organization #security-team-structure #security-communication #security-collaboration #security-architecture-patterns #security-architecture-principles #security-architecture-best-practices #security-architecture-standards #security-architecture-conventions #security-architecture-guidelines #security-architecture-quality #security-architecture-quality-assurance #security-architecture-quality-controls #security-architecture-quality-management #security-architecture-quality-standards #security-architecture-quality-rules #security-architecture-quality-guidelines #security-architecture-quality-best-practices #security-architecture-team-organization #security-architecture-team-structure #security-architecture-communication #security-architecture-collaboration

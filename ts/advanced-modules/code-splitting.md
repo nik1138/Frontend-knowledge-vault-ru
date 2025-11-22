@@ -1084,5 +1084,5 @@ analytics.report();
 
 - [[ts/configuration/Конфигурация|Конфигурация TypeScript]] - Настройка компилятора
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Общие принципы оптимизации
-- [[ts/react/React_с_TypeScript|TypeScript с React]] - Типобезопасная разработка React-приложений
+- [[TypeScript с React|TypeScript с React]] - Типобезопасная разработка React-приложений
 - [[ts/advanced-modules/module-resolution|Разрешение модулей]] - Алгоритмы поиска модулей

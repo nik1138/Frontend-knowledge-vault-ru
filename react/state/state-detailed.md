@@ -378,8 +378,8 @@ const [error, setError] = useState(null);
 
 ## Связи с другими файлами
 
-- [[react/hooks]] - Подробнее о хуках React
-- [[react/context]] - Контекст для передачи состояния
+- [[Типизация хуков React в TypeScript]] - Подробнее о хуках React
+- [[Типизация контекста в React с TypeScript]] - Контекст для передачи состояния
 - [[react/state-management]] - Управление состоянием в приложениях
 - [[react/performance]] - Оптимизация производительности
 - [[react/lifecycle]] - Жизненный цикл компонентов

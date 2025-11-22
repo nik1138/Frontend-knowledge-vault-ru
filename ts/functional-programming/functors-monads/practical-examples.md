@@ -2208,15 +2208,15 @@ eventSourcingSystem.dispatchEvent(customEvent);
 - [[ts/functional-programming/functors-monads/functors|Функторы]] - Базовая концепция функторов
 - [[ts/functional-programming/functors-monads/monads|Монады]] - Подробное изучение монад
 - [[ts/functional-programming/functors-monads/common-monads|Распространенные монады]] - Изучение популярных монад
-- [[ts/error-handling/index|Обработка ошибок]] - Обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование функторов и монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функторов и монад
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация монад
-- [[ts/react/components|React компоненты]] - Использование функциональных концепций в React
+- [[Типизация компонентов React в TypeScript|React компоненты]] - Использование функциональных концепций в React
 
 ## Следующие шаги
 
-- [[ts/error-handling/index|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
-- [[ts/testing/index|Тестирование]] - Тестирование функторов и монад
+- [[Обработка ошибок в TypeScript|Обработка ошибок]] - Расширенная обработка ошибок в функциональном стиле
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование функторов и монад
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация монад
 - [[ts/functional-programming/Функциональное_программирование|Функциональное программирование]] - Обзор всех концепций функционального программирования
-- [[ts/react/React_с_TypeScript|TypeScript с React]] - Использование функциональных концепций в React
+- [[TypeScript с React|TypeScript с React]] - Использование функциональных концепций в React

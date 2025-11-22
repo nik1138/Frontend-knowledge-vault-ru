@@ -401,7 +401,7 @@ test('renders error boundary fallback when child throws error', () => {
 - [[react/state-management]] - для управления состоянием ошибок
 - [[react/testing]] - для тестирования обработки ошибок
 - [[react/performance]] - для оптимизации обработки ошибок
-- [[react/context]] - для глобального управления ошибками через контекст
+- [[Типизация контекста в React с TypeScript]] - для глобального управления ошибками через контекст
 
 ## Заключение
 

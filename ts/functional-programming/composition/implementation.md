@@ -370,7 +370,7 @@ console.log(getAvailableElectronics(products));
 - [[ts/functional-programming/higher-order-functions|Функции высшего порядка]] - Функции, принимающие или возвращающие другие функции
 - [[ts/functional-programming/currying|Каррирование]] - Техника создания функций с одним аргументом
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация композиции функций
-- [[ts/testing/index|Тестирование]] - Тестирование композиции функций
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование композиции функций
 
 ## Следующие шаги
 
@@ -378,4 +378,4 @@ console.log(getAvailableElectronics(products));
 - [[ts/functional-programming/composition/practical-examples|Практические примеры]] - Реальные примеры использования композиции
 - [[ts/functional-programming/functors-monads|Функторы и монады]] - Расширенные функциональные концепции
 - [[ts/performance/advanced-performance-optimization|Оптимизация производительности]] - Оптимизация композиции функций
-- [[ts/testing/index|Тестирование]] - Тестирование композиции функций
+- [[Тестирование в TypeScript|Тестирование]] - Тестирование композиции функций

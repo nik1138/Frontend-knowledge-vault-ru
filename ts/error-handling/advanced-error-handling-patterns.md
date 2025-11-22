@@ -977,7 +977,7 @@ async function handleAsyncErrors() {
 
 - [[ts/type-system/type-inference|Вывод типов]] - как TypeScript помогает с типизацией ошибок
 - [[ts/advanced-types/conditional-types|Условные типы]] - для создания сложных типов ошибок
-- [[ts/utility-types/index|Утилиты типов]] - такие как NonNullable, Exclude и другие
+- [[Утилиты типов TypeScript|Утилиты типов]] - такие как NonNullable, Exclude и другие
 - [[ts/async-await/async-typescript-comprehensive|Async/Await]] - обработка асинхронных ошибок
 - [[react/error-boundaries]] - обработка ошибок в React компонентах
 - [[testing/error-handling]] - тестирование обработки ошибок
